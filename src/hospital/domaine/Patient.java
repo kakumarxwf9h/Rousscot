@@ -1,4 +1,4 @@
-package hospital;
+package hospital.domaine;
 
 /**
  * Created by ferlicotdelbe on 23/10/15.
