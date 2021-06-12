@@ -19,4 +19,27 @@ public class Patient {
         this.age = age;
         this.numSS = numSS;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Patient)) return false;
+
+        Patient patient = (Patient) o;
+
+        if (last_name != null ? !last_name.equals(patient.last_name) : patient.last_name != null) return false;
+        if (numSS != null ? !numSS.equals(patient.numSS) : patient.numSS != null) return false;
+        if (address != null ? !address.equals(patient.address) : patient.address != null) return false;
+        return !(age != null ? !age.equals(patient.age) : patient.age != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = last_name != null ? last_name.hashCode() : 0;
+        result = 31 * result + (numSS != null ? numSS.hashCode() : 0);
+        result = 31 * result + (address != null ? address.hashCode() : 0);
+        result = 31 * result + (age != null ? age.hashCode() : 0);
+        return result;
+    }
 }
