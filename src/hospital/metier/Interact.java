@@ -31,8 +31,6 @@ public class Interact extends Action{
     }
 
     public void setCommandWith(Map<String, String> map) {
-        map.put("", "hospital.metier.");
-        map.put("", "hospital.metier.");
         map.put(Quit.COMMAND, "hospital.metier.Quit");
         this.commands = map;
     }
