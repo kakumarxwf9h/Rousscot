@@ -18,7 +18,7 @@ public class Interact extends Action{
         try {
             Action action = (Action) Class.forName(this.commands.get(command)).newInstance();
             action.action(br);
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NullPointerException e) {
             this.action(br);
         }
 
