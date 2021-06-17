@@ -19,6 +19,7 @@ public class Interact extends Action{
             Action action = (Action) Class.forName(this.commands.get(command)).newInstance();
             action.action(br);
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NullPointerException e) {
+          //We catch the exceptions for user convenience
             this.action(br);
         }
 
@@ -30,6 +31,11 @@ public class Interact extends Action{
         }
     }
 
+    /*
+    *   I take a Map to let someone extend this application.
+    *   If someone need more command he can initialize the Map with the new commands then I will add the basic methods of the application.
+     *   A switch case would not have allow that :(
+     */
     public void setCommandWith(Map<String, String> map) {
         map.put(Quit.COMMAND, "hospital.metier.Quit");
         this.commands = map;
