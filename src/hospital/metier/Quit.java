@@ -16,4 +16,8 @@ public class Quit extends Action {
         System.exit(0);
     }
 
+    public void description(){
+        System.out.println("    Use me to quit the application.");
+    }
+
 }

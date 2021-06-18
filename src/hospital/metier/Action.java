@@ -10,4 +10,6 @@ public abstract class Action {
 
     public abstract void action(BufferedReader br) throws IOException;
 
+    public abstract void description();
+
 }
