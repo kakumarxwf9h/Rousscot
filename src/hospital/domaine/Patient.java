@@ -27,10 +27,7 @@ public class Patient {
 
         Patient patient = (Patient) o;
 
-        if (last_name != null ? !last_name.equals(patient.last_name) : patient.last_name != null) return false;
-        if (numSS != null ? !numSS.equals(patient.numSS) : patient.numSS != null) return false;
-        if (address != null ? !address.equals(patient.address) : patient.address != null) return false;
-        return !(age != null ? !age.equals(patient.age) : patient.age != null);
+        return !(last_name != null ? !last_name.equals(patient.last_name) : patient.last_name != null) && !(numSS != null ? !numSS.equals(patient.numSS) : patient.numSS != null) && !(address != null ? !address.equals(patient.address) : patient.address != null) && !(age != null ? !age.equals(patient.age) : patient.age != null);
 
     }
 

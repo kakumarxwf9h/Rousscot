@@ -27,10 +27,9 @@ public class Interact extends Action{
 
     public void generateCommandHelp() {
         for(String command: this.commands.keySet()){
-            System.out.println(command + ": ");
-            Action action= null;
+            System.out.print(command + ": ");
             try {
-                action = (Action) Class.forName(this.commands.get(command)).newInstance();
+                Action action = (Action) Class.forName(this.commands.get(command)).newInstance();
                 action.description();
             } catch (InstantiationException |IllegalAccessException | ClassNotFoundException e) {
                //Do nothing. This is just help method for user.
@@ -44,6 +43,7 @@ public class Interact extends Action{
      *   A switch case would not have allow that :(
      */
     public void setCommandWith(Map<String, String> map) {
+        map.put(Entrance.COMMAND, "hospital.metier.Entrance");
         map.put(Quit.COMMAND, "hospital.metier.Quit");
         this.commands = map;
     }
