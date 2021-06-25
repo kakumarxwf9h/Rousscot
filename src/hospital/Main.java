@@ -8,7 +8,8 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 
 /**
- * Created by ferlicotdelbe on 23/10/15.
+ * I am the main of this application. I just launch an interaction with the user.
+ * @author Cyril Ferlicot & Aurélien Rousseau
  */
 public class Main {
 

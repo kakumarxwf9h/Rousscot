@@ -20,4 +20,9 @@ public class PatientFactory {
     private PatientFactory() {
         this.patients = new HashSet<Patient>();
     }
+
+    public Patient patientNamed(String name) {
+        //TODO: Take a patient name and return the patient. If no patient return nil.
+        return null;
+    }
 }
