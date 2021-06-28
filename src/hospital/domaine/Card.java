@@ -29,4 +29,5 @@ public abstract class Card {
     public void setSpecialities(Set<Speciality> specialities) {
         this.specialities = specialities;
     }
+
 }

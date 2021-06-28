@@ -1,5 +1,6 @@
 package hospital.factory;
 
+import hospital.domaine.Patient;
 import hospital.domaine.StayCard;
 
 import java.util.HashSet;
@@ -19,5 +20,10 @@ public class StayCardFactory {
 
     private StayCardFactory() {
         this.stayCards = new HashSet<StayCard>();
+    }
+
+    public StayCard newStayCardFor(Patient patient) {
+        //TODO Create a new Stay card for the patient, save it on the stayCards attribute and return it.
+        return null;
     }
 }

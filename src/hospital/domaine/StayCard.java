@@ -9,4 +9,8 @@ public class StayCard extends Card {
     public StayCard(Patient patient, Set<Speciality> specialities) {
         super(patient, specialities);
     }
+
+    public void newTrackingCardFor(Speciality speciality) {
+        //TODO create a Tracking card for the speciality.
+    }
 }

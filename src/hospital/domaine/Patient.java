@@ -39,4 +39,9 @@ public class Patient {
         result = 31 * result + (age != null ? age.hashCode() : 0);
         return result;
     }
+
+    public String lastName() {
+        //TODO accessor
+        return null;
+    }
 }
