@@ -1,5 +1,7 @@
 package hospital.metier;
 
+import hospital.factory.PatientFactory;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 
@@ -9,15 +11,23 @@ import java.io.IOException;
  */
 public class RegisterPatient extends Action {
 
-    //TODO: register this class to the commands on Interact
+    protected final static String COMMAND = "register";
 
     @Override
     public void action(BufferedReader br) throws IOException {
-        //TODO
+        System.out.println("Nom du patient: ");
+        String name = br.readLine();
+        System.out.println("Numéro de Sécurité Social: ");
+        String ss = br.readLine();
+        System.out.println("Adresse: ");
+        String address = br.readLine();
+        System.out.println("Age: ");
+        String age = br.readLine();
+        PatientFactory.current().createPatient(name,ss,address,age);
     }
 
     @Override
     public void description() {
-        //TODO
+        System.out.println("Permet d'enregistrer un nouveau patient.");
     }
 }

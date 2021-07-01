@@ -88,7 +88,7 @@ public class Entrance extends Action {
         Patient patient = PatientFactory.current().patientNamed(name);
         if (patient == null) {
             (new RegisterPatient()).action(br);
-            patient = PatientFactory.current().patientNamed(name);
+            return this.getPatientNamed(name, br);
         }
         return patient;
     }

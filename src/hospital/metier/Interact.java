@@ -67,6 +67,7 @@ public class Interact extends Action {
      */
     public void setCommandWith(Map<String, String> map) {
         map.put(Entrance.COMMAND, "hospital.metier.Entrance");
+        map.put(RegisterPatient.COMMAND, "hospital.metier.RegisterPatient");
         map.put(Quit.COMMAND, "hospital.metier.Quit");
         this.commands = map;
     }

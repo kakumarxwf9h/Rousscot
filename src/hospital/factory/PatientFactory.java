@@ -25,4 +25,8 @@ public class PatientFactory {
         //TODO: Take a patient name and return the patient. If no patient return nil.
         return null;
     }
+
+    public void createPatient(String name, String ss, String address, String age) {
+        //TODO
+    }
 }
