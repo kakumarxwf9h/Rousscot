@@ -44,4 +44,8 @@ public class Patient {
         //TODO accessor
         return null;
     }
+
+    public void destroyStayingCard() {
+        //TODO
+    }
 }
