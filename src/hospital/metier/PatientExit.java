@@ -11,7 +11,7 @@ import java.io.IOException;
  */
 public class PatientExit extends Action {
 
-    protected final static String COMMAND = "exit";
+    protected final static String COMMAND = "sortie";
 
     /*
      * TODO
