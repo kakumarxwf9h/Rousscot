@@ -48,4 +48,9 @@ public class Patient {
     public void destroyStayingCard() {
         //TODO
     }
+
+    public void printStayingCard() {
+        //TODO I print the staying card of the patient and the tracking cards.
+        //TODO If the patient don't have one I could maybe use a Null Object Pattern :)
+    }
 }
