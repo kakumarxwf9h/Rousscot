@@ -69,6 +69,7 @@ public class Interact extends Action {
         map.put(Entrance.COMMAND, "hospital.metier.Entrance");
         map.put(RegisterPatient.COMMAND, "hospital.metier.RegisterPatient");
         map.put(Visualisation.COMMAND, "hospital.metier.Visualisation");
+        map.put(Consultation.COMMAND, "hospital.metier.Consultation");
         map.put(PatientExit.COMMAND,"hospital.metier.PatientExit" );
         map.put(Quit.COMMAND, "hospital.metier.Quit");
         this.commands = map;
