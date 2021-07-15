@@ -18,11 +18,11 @@ public class RegisterPatient extends Action {
         System.out.println("Nom du patient: ");
         String name = br.readLine();
         System.out.println("Numéro de Sécurité Social: ");
-        String ss = br.readLine();
+        Long ss = Long.parseLong(br.readLine());
         System.out.println("Adresse: ");
         String address = br.readLine();
         System.out.println("Age: ");
-        String age = br.readLine();
+        Integer age = Integer.parseInt(br.readLine());
         PatientFactory.current().createPatient(name,ss,address,age);
     }
 

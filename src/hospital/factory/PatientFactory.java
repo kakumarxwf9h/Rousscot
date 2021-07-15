@@ -26,7 +26,7 @@ public class PatientFactory {
         return null;
     }
 
-    public void createPatient(String name, String ss, String address, String age) {
+    public void createPatient(String name, Long ss, String address, Integer age) {
         //TODO
     }
 }
