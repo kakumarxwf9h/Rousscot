@@ -1,5 +1,12 @@
 package hospital.metier;
 
+import hospital.domaine.Patient;
+import hospital.domaine.Specialist;
+import hospital.domaine.Speciality;
+import hospital.factory.PatientFactory;
+import hospital.factory.ReportFactory;
+import hospital.factory.SpecialistFactory;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 
@@ -15,7 +22,36 @@ public class Consultation extends Action {
      */
     @Override
     public void action(BufferedReader br) throws IOException {
-        //TODO
+        System.out.println("Nom du patient: ");
+        Specialist specialist = SpecialistFactory.current().specialistNamed(br.readLine());
+        if (specialist == null) {
+            System.out.println("Aucun spécialiste de ce nom.");
+        } else {
+            this.consultWith(specialist, br);
+        }
+    }
+
+    /*
+    * TODO
+     */
+    public void consultWith(Specialist specialist, BufferedReader br) throws IOException {
+        System.out.println("Nom du patient: ");
+        Patient patient = PatientFactory.current().patientNamed(br.readLine());
+        Speciality speciality = specialist.getSpeciality();
+        if (patient == null || !(patient.needSpeciality(speciality))) {
+            System.out.println("Aucun patient de ce nom.");
+        } else {
+            patient.printTrackingCardOf(speciality);
+            this.createNewReport(patient, specialist, br);
+        }
+    }
+
+    /*
+    * TODO
+     */
+    public void createNewReport(Patient patient, Specialist specialist, BufferedReader br) throws IOException {
+        System.out.println("Rapport: ");
+        ReportFactory.current().createReport(patient, specialist, br.readLine() );
     }
 
     @Override

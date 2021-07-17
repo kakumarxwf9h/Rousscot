@@ -52,5 +52,15 @@ public class Patient {
     public void printStayingCard() {
         //TODO I print the staying card of the patient and the tracking cards.
         //TODO If the patient don't have one I could maybe use a Null Object Pattern :)
+        //TODO maybe use printTrackingCardOf
+    }
+
+    public boolean needSpeciality(Speciality speciality) {
+        //TODO
+        return false;
+    }
+
+    public void printTrackingCardOf(Speciality speciality) {
+        //TODO
     }
 }

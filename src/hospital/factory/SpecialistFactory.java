@@ -20,4 +20,9 @@ public class SpecialistFactory {
     private SpecialistFactory(){
         this.specialists = new HashSet<Specialist>();
     }
+
+    public Specialist specialistNamed(String name) {
+        //TODO
+        return null;
+    }
 }
