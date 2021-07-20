@@ -22,11 +22,15 @@ public class PatientFactory {
     }
 
     public Patient patientNamed(String name) {
-        //TODO: Take a patient name and return the patient. If no patient return nil.
+    	for(Patient p : patients){
+    		if(p.lastName().equals(name)){
+    			return p;
+    		}
+    	}
         return null;
     }
 
     public void createPatient(String name, Long ss, String address, Integer age) {
-        //TODO
+        patients.add(new Patient(name, ss, address, age));
     }
 }
