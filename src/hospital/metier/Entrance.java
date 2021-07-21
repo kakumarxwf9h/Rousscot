@@ -53,11 +53,7 @@ public class Entrance extends Action {
         //Can be better but that will do it for now.
         String inpt = input.toLowerCase().trim();
         if( inpt.equals("aide")){
-            System.out.print("Spécialités : ");
-            for(Speciality speciality : Speciality.values()){
-                System.out.print(speciality + " ; ");
-            }
-            System.out.println();
+            System.out.println(Speciality.allSpeciality());
             this.addSpecialityTo(stayCard,br);
             return null;
         }
@@ -66,12 +62,12 @@ public class Entrance extends Action {
             return null;
         }
 
-        for(Speciality speciality : Speciality.values()){
-            if(inpt.equals(speciality.toString().toLowerCase())){
-                stayCard.newTrackingCardFor(speciality);
-                this.addSpecialityTo(stayCard, br);
-                return null;
-            }
+        Speciality speciality = Speciality.forInput(inpt);
+
+        if(!(speciality == null)){
+            stayCard.newTrackingCardFor(speciality);
+            this.addSpecialityTo(stayCard, br);
+            return null;
         }
 
         System.out.println("Cette spécialité n'existe pas. Utilisez 'aide' pour plus d'information.");

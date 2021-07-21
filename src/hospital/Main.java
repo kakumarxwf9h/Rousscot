@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 /**
  * I am the main of this application. I just launch an interaction with the user.
+ *
  * @author Cyril Ferlicot & Aurélien Rousseau
  */
 public class Main {

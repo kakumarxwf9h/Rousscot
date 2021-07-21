@@ -1,6 +1,7 @@
 package hospital.factory;
 
 import hospital.domaine.Specialist;
+import hospital.domaine.Speciality;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -24,5 +25,9 @@ public class SpecialistFactory {
     public Specialist specialistNamed(String name) {
         //TODO
         return null;
+    }
+
+    public void createSpecialist(String name, Speciality speciality) {
+        //TODO
     }
 }
