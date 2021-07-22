@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * TODO
  */
-public class PatientExit extends Action {
+public class PatientExit extends ActionForPerson {
 
     protected final static String COMMAND = "sortie";
 
@@ -17,9 +17,8 @@ public class PatientExit extends Action {
      * TODO
      */
     @Override
-    public void action(BufferedReader br) throws IOException {
-        System.out.println("Nom du patient: ");
-        Patient patient = PatientFactory.current().patientNamed(br.readLine());
+    public void action(BufferedReader br, String name) throws IOException {
+        Patient patient = PatientFactory.current().patientNamed(name);
         if (patient == null) {
             System.out.println("Aucun patient de ce nom.");
         } else {

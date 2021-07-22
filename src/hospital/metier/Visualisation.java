@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * TODO
  */
-public class Visualisation extends Action {
+public class Visualisation extends ActionForPerson {
 
     protected final static String COMMAND = "visualisation";
 
@@ -17,9 +17,8 @@ public class Visualisation extends Action {
     * TODO
      */
     @Override
-    public void action(BufferedReader br) throws IOException {
-        System.out.println("Nom du patient: ");
-        Patient patient = PatientFactory.current().patientNamed(br.readLine());
+    public void action(BufferedReader br, String name) throws IOException {
+        Patient patient = PatientFactory.current().patientNamed(name);
         if (patient == null) {
             System.out.println("Aucun patient de ce nom.");
         } else {

@@ -14,9 +14,9 @@ import java.io.IOException;
  *
  * @author Cyril Ferlicot & Aurélien Rousseau
  */
-public class Entrance extends Action {
+public class Entrance extends ActionForPerson {
 
-    protected final static String COMMAND = "entrance";
+    protected final static String COMMAND = "Entree";
 
     /*
     *   I register a Patient. If the patient is not on the base I call RegisterPatient.
@@ -24,9 +24,7 @@ public class Entrance extends Action {
     *   @param br a BufferedReader if the action need to interact with the user.
      */
     @Override
-    public void action(BufferedReader br) throws IOException {
-        System.out.print("Nom du patient: ");
-        String name = br.readLine();
+    public void action(BufferedReader br, String name) throws IOException {
         Patient patient = getPatientNamed(name, br);
         this.createStayCardFor(patient, br);
         System.out.println("Enregistrement de " + patient.lastName() + " terminé.");
@@ -61,7 +59,7 @@ public class Entrance extends Action {
         if(inpt.equals("fini")){
             return null;
         }
-
+        //TODO NE FONCTIONNE PAS
         Speciality speciality = Speciality.forInput(inpt);
 
         if(!(speciality == null)){
@@ -83,7 +81,8 @@ public class Entrance extends Action {
     public Patient getPatientNamed(String name, BufferedReader br) throws IOException {
         Patient patient = PatientFactory.current().patientNamed(name);
         if (patient == null) {
-            (new RegisterPatient()).action(br);
+            System.out.println("Première visite, enregistrement du patient.");
+                    (new RegisterPatient()).action(br, name);
             return this.getPatientNamed(name, br);
         }
         return patient;

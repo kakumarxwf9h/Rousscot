@@ -9,17 +9,15 @@ import java.io.IOException;
 /**
  * TODO
  */
-public class RegisterSpecialist extends Action {
+public class RegisterSpecialist extends ActionForPerson {
 
-    protected final static String COMMAND = "registerS";
+    protected final static String COMMAND = "enregistrer";
 
     /*
     * TODO
      */
     @Override
-    public void action(BufferedReader br) throws IOException {
-        System.out.println("Nom du spécialiste: ");
-        String name = br.readLine();
+    public void action(BufferedReader br, String name) throws IOException {
         Speciality speciality = getSpeciality(br);
         SpecialistFactory.current().createSpecialist(name, speciality);
     }

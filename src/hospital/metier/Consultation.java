@@ -13,7 +13,7 @@ import java.io.IOException;
 /**
  * TODO
  */
-public class Consultation extends Action {
+public class Consultation extends ActionForPerson {
 
     protected final static String COMMAND = "consultation";
 
@@ -21,9 +21,8 @@ public class Consultation extends Action {
     * TODO
      */
     @Override
-    public void action(BufferedReader br) throws IOException {
-        System.out.println("Nom du patient: ");
-        Specialist specialist = SpecialistFactory.current().specialistNamed(br.readLine());
+    public void action(BufferedReader br, String name) throws IOException {
+        Specialist specialist = SpecialistFactory.current().specialistNamed(name);
         if (specialist == null) {
             System.out.println("Aucun spécialiste de ce nom.");
         } else {

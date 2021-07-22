@@ -10,7 +10,7 @@ import java.io.IOException;
  */
 public class Quit extends Action {
 
-    protected static final String COMMAND = "quit";
+    protected static final String COMMAND = "quitter";
 
     /*
     *   I quit the application

@@ -66,12 +66,8 @@ public class Interact extends Action {
      *   @param map I take a map with a command as key and a class name as value.
      */
     public void setCommandWith(Map<String, String> map) {
-        map.put(Entrance.COMMAND, "hospital.metier.Entrance");
-        map.put(RegisterPatient.COMMAND, "hospital.metier.RegisterPatient");
-        map.put(RegisterSpecialist.COMMAND, "hospital.metier.RegisterSpecialist");
-        map.put(Visualisation.COMMAND, "hospital.metier.Visualisation");
-        map.put(Consultation.COMMAND, "hospital.metier.Consultation");
-        map.put(PatientExit.COMMAND,"hospital.metier.PatientExit" );
+        map.put(PatientAction.COMMAND,"hospital.metier.PatientAction" );
+        map.put(SpecialistAction.COMMAND, "hospital.metier.SpecialistAction");
         map.put(Quit.COMMAND, "hospital.metier.Quit");
         this.commands = map;
     }

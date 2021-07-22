@@ -21,6 +21,7 @@ public enum Speciality {
     * TODO
      */
     public static Speciality forInput(String input) {
+        //TODO something doesn't work
         for (Speciality speciality : Speciality.values()) {
             if (input.equals(speciality.toString().toLowerCase())) {
                 return speciality;
