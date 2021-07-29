@@ -5,19 +5,19 @@ import java.util.Set;
 /**
  * Created by rousseaua on 23/10/15.
  */
-public class TrackingCard extends Card{
-    protected Report report;
+public class TrackingCard {
 
-    public TrackingCard(Patient patient, Set<Speciality> specialities, Report report) {
-        super(patient, specialities);
-        this.report = report;
+    protected Set<Report> reports;
+
+    public TrackingCard(Set<Report> reports) {
+        this.reports = reports;
     }
 
-    public Report getReport() {
-        return report;
+    public Set<Report> getReports() {
+        return reports;
     }
 
-    public void setReport(Report report) {
-        this.report = report;
+    public void setReports(Set<Report> reports) {
+        this.reports = reports;
     }
 }

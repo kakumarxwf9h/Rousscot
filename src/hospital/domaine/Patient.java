@@ -1,24 +1,26 @@
 package hospital.domaine;
 
 
+import java.util.Map;
+import java.util.Set;
+
 /**
  * Created by ferlicotdelbe on 23/10/15.
  */
 public class Patient {
 
     protected String last_name;
-
     protected Long numSS;
-
     protected String address;
-
     protected Integer age;
+    protected Map<Speciality, TrackingCard> trackingCards;
+    protected StayCard stayCard;
 
     public Patient(String name, Long numSS, String address, Integer age) {
-        this.address = address;
-        this.last_name = name;
-        this.age = age;
         this.numSS = numSS;
+        this.last_name = name;
+        this.address = address;
+        this.age = age;
     }
 
     @Override
@@ -45,9 +47,27 @@ public class Patient {
         return last_name;
     }
 
+    public Map<Speciality, TrackingCard> getTrackingCards() {
+        return trackingCards;
+    }
+
+    public void setTrackingCards(Map<Speciality, TrackingCard> trackingCards) {
+        this.trackingCards = trackingCards;
+    }
+
+    public StayCard getStayCard() {
+        return stayCard;
+    }
+
+    public void setStayCard(StayCard stayCard) {
+        this.stayCard = stayCard;
+    }
+
+    /**
+     * Destroy the "stayingCard" of the Patient = set the "stayingCard"  to null
+     */
     public void destroyStayingCard() {
-        //TODO
-    	
+        stayCard = null;
     }
 
     public void printStayingCard() {
@@ -61,7 +81,17 @@ public class Patient {
         return false;
     }
 
+    /**
+     * Print all the Reports of a TrackingCard
+     * @param speciality
+     */
     public void printTrackingCardOf(Speciality speciality) {
-        //TODO
+        Set<Report> reports = trackingCards.get(speciality).getReports();
+        for (Report r : reports) {
+            System.out.println("--------------------");
+            System.out.println("COMPTE RENDU DU " + r.getDate());
+            System.out.println("RAPPORT: " + r.getReport());
+            System.out.println("END OF THE REPORT");
+        }
     }
 }

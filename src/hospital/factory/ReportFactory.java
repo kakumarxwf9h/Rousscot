@@ -4,6 +4,7 @@ import hospital.domaine.Patient;
 import hospital.domaine.Report;
 import hospital.domaine.Specialist;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,7 +25,12 @@ public class ReportFactory {
         this.reports = new HashSet<Report>();
     }
 
-    public void createReport(Patient patient, Specialist specialist, String report) {
-        //TODO
+    /**
+     * Create a Report and add it in "reports"
+     * @param date
+     * @param report
+     */
+    public void createReport(Date date, String report) {
+        reports.add(new Report(date, report));
     }
 }

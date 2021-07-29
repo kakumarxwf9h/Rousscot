@@ -22,12 +22,26 @@ public class SpecialistFactory {
         this.specialists = new HashSet<Specialist>();
     }
 
+    /**
+     * @param name the name of the Specialist to return
+     * @return the Specialist with the given name, else null
+     */
     public Specialist specialistNamed(String name) {
-        //TODO
+        for(Specialist s : specialists){
+            if(s.getName().equals(name)){
+                return s;
+            }
+        }
         return null;
     }
 
+    /**
+     * Create a Specialist and add it in "specialists"
+     *
+     * @param name the name to set
+     * @param speciality the speciality to set
+     */
     public void createSpecialist(String name, Speciality speciality) {
-        //TODO
+        specialists.add(new Specialist(name, speciality));
     }
 }
