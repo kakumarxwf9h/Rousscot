@@ -1,6 +1,7 @@
 package hospital.domaine;
 
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -16,11 +17,13 @@ public class Patient {
     protected Map<Speciality, TrackingCard> trackingCards;
     protected StayCard stayCard;
 
-    public Patient(String name, Long numSS, String address, Integer age) {
+    public Patient(String last_name, Long numSS, String address, Integer age, StayCard stayCard) {
+        this.last_name = last_name;
         this.numSS = numSS;
-        this.last_name = name;
         this.address = address;
         this.age = age;
+        this.stayCard = stayCard;
+        trackingCards = new HashMap<>();
     }
 
     @Override
@@ -67,6 +70,7 @@ public class Patient {
      * Destroy the "stayingCard" of the Patient = set the "stayingCard"  to null
      */
     public void destroyStayingCard() {
+        //TODO Export the reports of the StayCard into the TrackingCard
         stayCard = null;
     }
 

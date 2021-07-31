@@ -33,4 +33,6 @@ public class ReportFactory {
     public void createReport(Date date, String report) {
         reports.add(new Report(date, report));
     }
+
+
 }

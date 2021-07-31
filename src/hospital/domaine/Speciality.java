@@ -10,11 +10,11 @@ public enum Speciality {
     * TODO
      */
     public static String allSpeciality() {
-        String result = "Spécialités : ";
+        StringBuilder result = new StringBuilder("Spécialités : ");
         for (Speciality speciality : Speciality.values()) {
-            result = result + speciality + " ; "; //Can be improve
+            result.append(speciality + " ; ");
         }
-        return result;
+        return result.toString();
     }
 
     /*

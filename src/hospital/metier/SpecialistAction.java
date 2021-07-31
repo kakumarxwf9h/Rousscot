@@ -15,7 +15,7 @@ public class SpecialistAction extends Action {
     protected Map<String, String> commands;
 
     public SpecialistAction() {
-        this.commands = new HashMap<String, String>();
+        this.commands = new HashMap<>();
         this.commands.put(RegisterSpecialist.COMMAND, "hospital.metier.RegisterSpecialist");
         this.commands.put(Consultation.COMMAND, "hospital.metier.Consultation");
     }

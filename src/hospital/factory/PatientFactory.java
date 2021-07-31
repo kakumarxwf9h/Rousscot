@@ -1,6 +1,7 @@
 package hospital.factory;
 
 import hospital.domaine.Patient;
+import hospital.domaine.StayCard;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,6 +22,11 @@ public class PatientFactory {
         this.patients = new HashSet<Patient>();
     }
 
+    /**
+     *
+     * @param name
+     * @return the Patient with the given name, else null
+     */
     public Patient patientNamed(String name) {
     	for(Patient p : patients){
     		if(p.lastName().equals(name)){
@@ -30,7 +36,14 @@ public class PatientFactory {
         return null;
     }
 
-    public void createPatient(String name, Long ss, String address, Integer age) {
-        patients.add(new Patient(name, ss, address, age));
+    /**
+     * Create a Patient and add it to "patients"
+     * @param name
+     * @param ss
+     * @param address
+     * @param age
+     */
+    public void createPatient(String name, Long ss, String address, Integer age, StayCard stayCard) {
+        patients.add(new Patient(name, ss, address, age, stayCard));
     }
 }

@@ -15,7 +15,7 @@ public class PatientAction extends Action {
     protected Map<String, String> commands;
 
     public PatientAction() {
-        this.commands = new HashMap<String, String>();
+        this.commands = new HashMap<>();
         this.commands.put(Entrance.COMMAND, "hospital.metier.Entrance");
         this.commands.put(RegisterPatient.COMMAND, "hospital.metier.RegisterPatient");
         this.commands.put(Visualisation.COMMAND, "hospital.metier.Visualisation");
