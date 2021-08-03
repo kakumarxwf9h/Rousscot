@@ -17,13 +17,11 @@ public class Patient {
     protected Map<Speciality, TrackingCard> trackingCards;
     protected StayCard stayCard;
 
-    public Patient(String last_name, Long numSS, String address, Integer age, StayCard stayCard) {
+    public Patient(String last_name, Long numSS, String address, Integer age) {
         this.last_name = last_name;
         this.numSS = numSS;
         this.address = address;
         this.age = age;
-        this.stayCard = stayCard;
-        trackingCards = new HashMap<>();
     }
 
     @Override

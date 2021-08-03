@@ -50,6 +50,7 @@ public class Consultation extends ActionForPerson {
      */
     public void createNewReport(Patient patient, Specialist specialist, BufferedReader br) throws IOException {
         System.out.println("Rapport: ");
+        // todo gné ? j'ai un peu du mal à voir comment ça va s'imbriquer
         ReportFactory.current().createReport(patient, specialist, br.readLine() );
     }
 
