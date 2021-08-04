@@ -35,4 +35,7 @@ public class ReportFactory {
     }
 
 
+    public void createReport(Patient patient, Specialist specialist, String s) {
+        //TODO
+    }
 }

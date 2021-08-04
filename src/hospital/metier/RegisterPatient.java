@@ -1,5 +1,6 @@
 package hospital.metier;
 
+import hospital.domaine.Patient;
 import hospital.factory.PatientFactory;
 
 import java.io.BufferedReader;
@@ -7,7 +8,7 @@ import java.io.IOException;
 
 /**
  * TODO
- * @author Cyril Ferlicot & Aurélien Rousseau
+ * @author Cyril Ferlicot & Aurï¿½lien Rousseau
  */
 public class RegisterPatient extends ActionForPerson {
 
@@ -15,13 +16,14 @@ public class RegisterPatient extends ActionForPerson {
 
     @Override
     public void action(BufferedReader br, String name) throws IOException {
-        System.out.println("Numéro de Sécurité Social: ");
+        System.out.println("Numï¿½ro de Sï¿½curitï¿½ Social: ");
         Long ss = Long.parseLong(br.readLine());
         System.out.println("Adresse: ");
         String address = br.readLine();
         System.out.println("Age: ");
         Integer age = Integer.parseInt(br.readLine());
-        PatientFactory.current().createPatient(name,ss,address,age);
+        Patient patient = PatientFactory.current().createPatient(name,ss,address,age);
+        System.out.println("Patient nommÃ© " + patient.lastName() + " crÃ©Ã©.");
     }
 
     @Override

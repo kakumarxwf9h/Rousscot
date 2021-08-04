@@ -43,12 +43,14 @@ public class PatientFactory {
      * @param address
      * @param age
      */
-    public void createPatient(String name, Long ss, String address, Integer age) {
-        patients.add(new Patient(name, ss, address, age));
+    public Patient createPatient(String name, Long ss, String address, Integer age) {
+        Patient patient =new Patient(name, ss, address, age);
+        patients.add(patient);
+        return patient;
     }
 
     /**
-     * //TODO vérifier que ça fonctionne ha ha
+     * //TODO vï¿½rifier que ï¿½a fonctionne ha ha
      *
      * Destroy the stayCard of the given Patient
      * @param patient

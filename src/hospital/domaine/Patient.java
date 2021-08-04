@@ -10,15 +10,15 @@ import java.util.Set;
  */
 public class Patient {
 
-    protected String last_name;
+    protected String lastName;
     protected Long numSS;
     protected String address;
     protected Integer age;
     protected Map<Speciality, TrackingCard> trackingCards;
     protected StayCard stayCard;
 
-    public Patient(String last_name, Long numSS, String address, Integer age) {
-        this.last_name = last_name;
+    public Patient(String lastName, Long numSS, String address, Integer age) {
+        this.lastName = lastName;
         this.numSS = numSS;
         this.address = address;
         this.age = age;
@@ -31,13 +31,13 @@ public class Patient {
 
         Patient patient = (Patient) o;
 
-        return !(last_name != null ? !last_name.equals(patient.last_name) : patient.last_name != null) && !(numSS != null ? !numSS.equals(patient.numSS) : patient.numSS != null) && !(address != null ? !address.equals(patient.address) : patient.address != null) && !(age != null ? !age.equals(patient.age) : patient.age != null);
+        return !(lastName != null ? !lastName.equals(patient.lastName) : patient.lastName != null) && !(numSS != null ? !numSS.equals(patient.numSS) : patient.numSS != null) && !(address != null ? !address.equals(patient.address) : patient.address != null) && !(age != null ? !age.equals(patient.age) : patient.age != null);
 
     }
 
     @Override
     public int hashCode() {
-        int result = last_name != null ? last_name.hashCode() : 0;
+        int result = lastName != null ? lastName.hashCode() : 0;
         result = 31 * result + (numSS != null ? numSS.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (age != null ? age.hashCode() : 0);
@@ -45,7 +45,7 @@ public class Patient {
     }
 
     public String lastName() {
-        return last_name;
+        return lastName;
     }
 
     public Map<Speciality, TrackingCard> getTrackingCards() {
@@ -74,8 +74,8 @@ public class Patient {
 
     public void printStayingCard() {
         //TODO I print the staying card of the patient and the tracking cards.
-        //TODO If the patient don't have one I could maybe use a Null Object Pattern :)
-        //TODO maybe use printTrackingCardOf
+        //TODOï¿½If the patient don't have one I could maybe use a Null Object Pattern :)
+        //TODOï¿½maybe use printTrackingCardOf
     }
 
     public boolean needSpeciality(Speciality speciality) {
