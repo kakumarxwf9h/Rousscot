@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * I begin an interaction with the user. When an action end, I am call to launch a new action.
  *
- * @author Cyril Ferlicot & Aurélien Rousseau
+ * @author Cyril Ferlicot & Aurï¿½lien Rousseau
  */
 public class Interact extends Action {
 
@@ -68,6 +68,7 @@ public class Interact extends Action {
     public void setCommandWith(Map<String, String> map) {
         map.put(PatientAction.COMMAND,"hospital.metier.PatientAction" );
         map.put(SpecialistAction.COMMAND, "hospital.metier.SpecialistAction");
+        map.put(ListPatient.COMMAND, "hospital.metier.ListPatient");
         map.put(Quit.COMMAND, "hospital.metier.Quit");
         this.commands = map;
     }

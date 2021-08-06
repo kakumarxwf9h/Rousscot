@@ -23,7 +23,7 @@ public class RegisterPatient extends ActionForPerson {
         System.out.println("Age: ");
         Integer age = Integer.parseInt(br.readLine());
         Patient patient = PatientFactory.current().createPatient(name,ss,address,age);
-        System.out.println("Patient nommé " + patient.lastName() + " créé.");
+        System.out.println("Patient nommé " + patient.lastName() + " créé.\n");
     }
 
     @Override

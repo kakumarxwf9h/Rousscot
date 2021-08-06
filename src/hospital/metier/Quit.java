@@ -6,7 +6,7 @@ import java.io.IOException;
 /**
  * I am an action that allow the user to quit the application.
  *
- * @author Cyril Ferlicot & Aurélien Rousseau
+ * @author Cyril Ferlicot & Aurï¿½lien Rousseau
  */
 public class Quit extends Action {
 
@@ -18,7 +18,7 @@ public class Quit extends Action {
     @Override
     public void action(BufferedReader br) throws IOException {
         br.close();
-        System.out.print("Fin de l'application.");
+        System.out.println("Fin de l'application.");
         System.exit(0);
     }
 

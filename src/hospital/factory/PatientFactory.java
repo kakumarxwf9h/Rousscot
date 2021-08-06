@@ -58,4 +58,12 @@ public class PatientFactory {
     public void destroyStayingCard(Patient patient){
         patientNamed(patient.lastName()).destroyStayingCard();
     }
+
+    /**
+     * //TODO
+     * @return
+     */
+    public Set<Patient> patients() {
+        return this.patients;
+    }
 }

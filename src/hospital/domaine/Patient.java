@@ -96,4 +96,16 @@ public class Patient {
             System.out.println("END OF THE REPORT");
         }
     }
+
+    /**
+     * TODO
+     * @return
+     */
+    public boolean isAtTheHospital() {
+        if(this.stayCard == null){
+            //TODO Use Null Object Pattern to avoid that.
+            return false;
+        }
+        return true;
+    }
 }
