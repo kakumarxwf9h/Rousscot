@@ -30,6 +30,7 @@ public class Interact extends Action {
             action.action(br);
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NullPointerException e) {
             //We catch the exceptions for user convenience
+            System.out.println("Mauvaise commande.");
             this.action(br);
         }
     }
@@ -40,7 +41,7 @@ public class Interact extends Action {
     *   @return An instance of an action class.
      */
     public Action getInstanceOfClassNamed(String command) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-        return (Action) Class.forName(this.commands.get(command)).newInstance();
+        return (Action) Class.forName(this.commands.get(command.toLowerCase())).newInstance();
     }
 
     /*
@@ -66,10 +67,11 @@ public class Interact extends Action {
      *   @param map I take a map with a command as key and a class name as value.
      */
     public void setCommandWith(Map<String, String> map) {
-        map.put(PatientAction.COMMAND,"hospital.metier.PatientAction" );
-        map.put(SpecialistAction.COMMAND, "hospital.metier.SpecialistAction");
-        map.put(ListPatient.COMMAND, "hospital.metier.ListPatient");
-        map.put(Quit.COMMAND, "hospital.metier.Quit");
+        map.put(PatientAction.COMMAND.toLowerCase(),"hospital.metier.PatientAction" );
+        map.put(SpecialistAction.COMMAND.toLowerCase(), "hospital.metier.SpecialistAction");
+        map.put(ListPatient.COMMAND.toLowerCase(), "hospital.metier.ListPatient");
+        map.put(ListSpecialist.COMMAND.toLowerCase(), "hospital.metier.ListSpecialist");
+        map.put(Quit.COMMAND.toLowerCase(), "hospital.metier.Quit");
         this.commands = map;
     }
 

@@ -1,5 +1,6 @@
 package hospital.metier;
 
+import hospital.domaine.Specialist;
 import hospital.domaine.Speciality;
 import hospital.factory.SpecialistFactory;
 
@@ -19,17 +20,18 @@ public class RegisterSpecialist extends ActionForPerson {
     @Override
     public void action(BufferedReader br, String name) throws IOException {
         Speciality speciality = getSpeciality(br);
-        SpecialistFactory.current().createSpecialist(name, speciality);
+        Specialist specialist = SpecialistFactory.current().createSpecialist(name, speciality);
+        System.out.println("SpÃ©cialiste " + specialist.getName() +" engagÃ©.");
     }
 
     /*
     * TODO
      */
     public Speciality getSpeciality(BufferedReader br) throws IOException {
-        System.out.println(Speciality.allSpeciality() + '\n' + "Spécialité : ");
+        System.out.println(Speciality.allSpeciality() + '\n' + "Spï¿½cialitï¿½ : ");
         Speciality speciality = Speciality.forInput(br.readLine().toLowerCase());
         while (speciality == null) {
-            System.out.println("Pas de spécialité de ce nom. ");
+            System.out.println("Pas de spï¿½cialitï¿½ de ce nom. ");
             speciality = this.getSpeciality(br);
         }
         return speciality;
@@ -37,6 +39,6 @@ public class RegisterSpecialist extends ActionForPerson {
 
     @Override
     public void description() {
-        System.out.println("Permet d'enregistrer un nouveau spécialiste.");
+        System.out.println("Permet d'enregistrer un nouveau spï¿½cialiste.");
     }
 }

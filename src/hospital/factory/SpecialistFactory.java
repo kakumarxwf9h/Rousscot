@@ -3,23 +3,23 @@ package hospital.factory;
 import hospital.domaine.Specialist;
 import hospital.domaine.Speciality;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by rousseaua on 23/10/15.
+ * TODO
  */
 public class SpecialistFactory {
     private static SpecialistFactory INSTANCE = new SpecialistFactory();
-
-    public static SpecialistFactory current(){
-        return INSTANCE;
-    }
-
     public Set<Specialist> specialists;
 
-    private SpecialistFactory(){
+    private SpecialistFactory() {
         this.specialists = new HashSet<Specialist>();
+    }
+
+    public static SpecialistFactory current() {
+        return INSTANCE;
     }
 
     /**
@@ -27,8 +27,8 @@ public class SpecialistFactory {
      * @return the Specialist with the given name, else null
      */
     public Specialist specialistNamed(String name) {
-        for(Specialist s : specialists){
-            if(s.getName().equals(name)){
+        for (Specialist s : specialists) {
+            if (s.getName().equals(name)) {
                 return s;
             }
         }
@@ -38,10 +38,21 @@ public class SpecialistFactory {
     /**
      * Create a Specialist and add it in "specialists"
      *
-     * @param name the name to set
+     * @param name       the name to set
      * @param speciality the speciality to set
      */
-    public void createSpecialist(String name, Speciality speciality) {
-        specialists.add(new Specialist(name, speciality));
+    public Specialist createSpecialist(String name, Speciality speciality) {
+        Specialist specialist = new Specialist(name, speciality);
+        specialists.add(specialist);
+        return specialist;
+    }
+
+    /**
+     * TODo
+     *
+     * @return
+     */
+    public Collection<Specialist> specialists() {
+        return this.specialists;
     }
 }
