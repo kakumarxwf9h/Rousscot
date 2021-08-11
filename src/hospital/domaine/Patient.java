@@ -108,4 +108,8 @@ public class Patient {
         }
         return true;
     }
+
+    public void stayCard(StayCard stayCard) {
+        this.stayCard = stayCard;
+    }
 }

@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * I am an action that manage the entrance of a Patient.
  *
- * @author Cyril Ferlicot & Aurélien Rousseau
+ * @author Cyril Ferlicot & Aurï¿½lien Rousseau
  */
 public class Entrance extends ActionForPerson {
 
@@ -26,8 +26,12 @@ public class Entrance extends ActionForPerson {
     @Override
     public void action(BufferedReader br, String name) throws IOException {
         Patient patient = getPatientNamed(name, br);
-        this.createStayCardFor(patient, br);
-        System.out.println("Enregistrement de " + patient.lastName() + " terminé.");
+        if(patient.isAtTheHospital()){
+            System.out.println("Patient dÃ©jÃ  Ã  l'hÃ´pital.\n");
+        } else {
+            this.createStayCardFor(patient, br);
+            System.out.println("Enregistrement de " + patient.lastName() + " terminï¿½.\n");
+        }
     }
 
     /*
@@ -40,7 +44,7 @@ public class Entrance extends ActionForPerson {
     }
 
     public void addSpecialityTo(StayCard stayCard, BufferedReader br) throws IOException {
-        System.out.print("Spécialité (taper 'aide' pour avoir la liste ou 'fini' pour terminer l'enregistrement) : ");
+        System.out.print("Spï¿½cialitï¿½ (taper 'aide' pour avoir la liste ou 'fini' pour terminer l'enregistrement) : ");
         this.manageSpecialityNamed(br.readLine(), stayCard, br);
     }
 
@@ -59,18 +63,17 @@ public class Entrance extends ActionForPerson {
         if(inpt.equals("fini")){
             return null;
         }
-        //TODO NE FONCTIONNE PAS
-        Speciality speciality = Speciality.forInput(inpt);
 
+        Speciality speciality = Speciality.forInput(inpt);
         if(!(speciality == null)){
-            //todo c'est ça que tu voulais ?
-//            stayCard.newTrackingCardFor(speciality);
+            System.out.println("1");
             stayCard.addSpeciality(speciality);
+            System.out.println("2");
             this.addSpecialityTo(stayCard, br);
             return null;
         }
 
-        System.out.println("Cette spécialité n'existe pas. Utilisez 'aide' pour plus d'information.");
+        System.out.println("Cette spï¿½cialitï¿½ n'existe pas. Utilisez 'aide' pour plus d'information.");
         this.addSpecialityTo(stayCard, br);
         return null;
     }
@@ -83,7 +86,7 @@ public class Entrance extends ActionForPerson {
     public Patient getPatientNamed(String name, BufferedReader br) throws IOException {
         Patient patient = PatientFactory.current().patientNamed(name);
         if (patient == null) {
-            System.out.println("Première visite, enregistrement du patient.");
+            System.out.println("Premiï¿½re visite, enregistrement du patient.");
                     (new RegisterPatient()).action(br, name);
             return this.getPatientNamed(name, br);
         }
@@ -92,6 +95,6 @@ public class Entrance extends ActionForPerson {
 
     @Override
     public void description() {
-        System.out.println("Permet d'enregistrer l'entrée d'un patient.");
+        System.out.println("Permet d'enregistrer l'entrï¿½e d'un patient.");
     }
 }

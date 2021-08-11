@@ -11,12 +11,12 @@ public class StayCard {
     Map<Speciality, Report> specialityReportMap;
 
     public StayCard() {
-        specialityReportMap = new HashMap<>();
+        specialityReportMap = new HashMap<Speciality, Report>();
     }
 
     public void addSpeciality(Speciality speciality) {
         if (specialityReportMap.containsKey(speciality)) {
-            System.out.println("La carte de séjour contient déjà la spécialité.");
+            System.out.println("La carte de sï¿½jour contient dï¿½jï¿½ la spï¿½cialitï¿½.");
         } else {
             specialityReportMap.put(speciality, null);
         }

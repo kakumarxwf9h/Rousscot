@@ -23,7 +23,8 @@ public class StayCardFactory {
     }
 
     public StayCard newStayCardFor(Patient patient) {
-        //TODO Create a new Stay card for the patient, save it on the stayCards attribute and return it.
-        return null;
+        StayCard stayCard = new StayCard();
+        patient.stayCard(stayCard);
+        return stayCard;
     }
 }
