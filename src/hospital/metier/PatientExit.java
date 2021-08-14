@@ -22,8 +22,9 @@ public class PatientExit extends ActionForPerson {
         if (patient == null) {
             System.out.println("Aucun patient de ce nom.");
         } else {
+            //TODO verifer qu'il y ai pas de consultation restante sinon warning.
             patient.destroyStayingCard();
-            System.out.println("Carte de séjour de " + patient.lastName() + " détruite.");
+            System.out.println("Carte de sï¿½jour de " + patient.lastName() + " dï¿½truite.\n");
         }
 
     }

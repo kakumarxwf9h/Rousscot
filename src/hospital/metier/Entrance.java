@@ -66,9 +66,7 @@ public class Entrance extends ActionForPerson {
 
         Speciality speciality = Speciality.forInput(inpt);
         if(!(speciality == null)){
-            System.out.println("1");
             stayCard.addSpeciality(speciality);
-            System.out.println("2");
             this.addSpecialityTo(stayCard, br);
             return null;
         }
