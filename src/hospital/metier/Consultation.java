@@ -37,8 +37,12 @@ public class Consultation extends ActionForPerson {
         System.out.println("Nom du patient: ");
         Patient patient = PatientFactory.current().patientNamed(br.readLine());
         Speciality speciality = specialist.getSpeciality();
-        if (patient == null || !(patient.needSpeciality(speciality))) {
+        if (patient == null) {
             System.out.println("Aucun patient de ce nom.");
+        } else if (patient.getStayCard() == null) {
+            System.out.println("Le patient n'est pas à l'hopital");
+        } else if (!(patient.needSpeciality(speciality))) {
+            System.out.println("Le patient existe mais n'a pas besoin de cette spécialité.");
         } else {
             patient.printTrackingCardOf(speciality);
             this.createNewReport(patient, specialist, br);
@@ -51,7 +55,7 @@ public class Consultation extends ActionForPerson {
     public void createNewReport(Patient patient, Specialist specialist, BufferedReader br) throws IOException {
         System.out.println("Rapport: ");
         // todo gné ? j'ai un peu du mal à voir comment ça va s'imbriquer
-        ReportFactory.current().createReport(patient, specialist, br.readLine() );
+        ReportFactory.current().createReport(patient, specialist, br.readLine());
     }
 
     @Override

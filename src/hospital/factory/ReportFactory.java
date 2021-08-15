@@ -27,15 +27,25 @@ public class ReportFactory {
 
     /**
      * Create a Report and add it in "reports"
+     *
      * @param date
-     * @param report
+     * @param content
+     * @return the Report created
      */
-    public void createReport(Date date, String report) {
-        reports.add(new Report(date, report));
+    public Report createReport(Date date, String content) {
+        Report report = new Report(date, content);
+        reports.add(report);
+        return report;
     }
 
 
     public void createReport(Patient patient, Specialist specialist, String s) {
         //TODO
+        Report report = createReport(new Date(), s);
+        for (Patient p : PatientFactory.current().patients) {
+            if(p.lastName()==patient.lastName()){
+                p.getStayCard().addReportToSpeciality(specialist.getSpeciality(), report);
+            }
+        }
     }
 }

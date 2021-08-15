@@ -2,6 +2,7 @@ package hospital.domaine;
 
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -78,31 +79,40 @@ public class Patient {
         //TODO�maybe use printTrackingCardOf
     }
 
+    /**
+     * @param speciality the Speciality to find in the StayCard of the Patient
+     * @return true if the Speciality is needed, else false
+     */
     public boolean needSpeciality(Speciality speciality) {
-        //TODO
-        return false;
+        return stayCard.specialityReportMap.containsKey(speciality);
     }
 
     /**
      * Print all the Reports of a TrackingCard
+     *
      * @param speciality
      */
     public void printTrackingCardOf(Speciality speciality) {
-        Set<Report> reports = trackingCards.get(speciality).getReports();
-        for (Report r : reports) {
-            System.out.println("--------------------");
-            System.out.println("COMPTE RENDU DU " + r.getDate());
-            System.out.println("RAPPORT: " + r.getReport());
-            System.out.println("END OF THE REPORT");
+        if (trackingCards == null || trackingCards.get(speciality).getReports() == null) {
+            System.out.println(lastName + " n'a aucun compte rendu pour la spécialité " + speciality + ".");
+        } else {
+            Set<Report> reports = trackingCards.get(speciality).getReports();
+            for (Report r : reports) {
+                System.out.println("--------------------");
+                System.out.println("COMPTE RENDU DU " + r.getDate());
+                System.out.println("RAPPORT: " + r.getReport());
+                System.out.println("END OF THE REPORT");
+            }
         }
     }
 
     /**
      * TODO
+     *
      * @return
      */
     public boolean isAtTheHospital() {
-        if(this.stayCard == null){
+        if (this.stayCard == null) {
             //TODO Use Null Object Pattern to avoid that.
             return false;
         }

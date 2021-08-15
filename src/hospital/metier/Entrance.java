@@ -16,7 +16,7 @@ import java.io.IOException;
  */
 public class Entrance extends ActionForPerson {
 
-    protected final static String COMMAND = "Entree";
+    protected final static String COMMAND = "entree";
 
     /*
     *   I register a Patient. If the patient is not on the base I call RegisterPatient.

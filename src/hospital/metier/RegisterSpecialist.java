@@ -28,10 +28,10 @@ public class RegisterSpecialist extends ActionForPerson {
     * TODO
      */
     public Speciality getSpeciality(BufferedReader br) throws IOException {
-        System.out.println(Speciality.allSpeciality() + '\n' + "Sp�cialit� : ");
+        System.out.println(Speciality.allSpeciality() + '\n' + "Spécialité : ");
         Speciality speciality = Speciality.forInput(br.readLine().toLowerCase());
         while (speciality == null) {
-            System.out.println("Pas de sp�cialit� de ce nom. ");
+            System.out.println("Pas de spécialité de ce nom. ");
             speciality = this.getSpeciality(br);
         }
         return speciality;
