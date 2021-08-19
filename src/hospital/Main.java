@@ -1,5 +1,8 @@
 package hospital;
 
+import hospital.domaine.Speciality;
+import hospital.factory.PatientFactory;
+import hospital.factory.SpecialistFactory;
 import hospital.metier.Interact;
 
 import java.io.BufferedReader;
@@ -15,6 +18,12 @@ import java.util.HashMap;
 public class Main {
 
     public static void main(String[] args) throws IOException {
+        PatientFactory.current().createPatient("spirou", (long) 123,"pie",12);
+        PatientFactory.current().createPatient("fantasio", (long) 123,"pie",12);
+
+        SpecialistFactory.current().createSpecialist("asterix", Speciality.CARDIOLOGIE);
+
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         Interact interaction = (new Interact());
         interaction.setCommandWith(new HashMap<String, String>());

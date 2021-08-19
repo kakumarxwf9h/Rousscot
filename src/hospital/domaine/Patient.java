@@ -1,6 +1,9 @@
 package hospital.domaine;
 
 
+import hospital.exception.IllegalReportException;
+import hospital.factory.TrackingCardFactory;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -23,6 +26,7 @@ public class Patient {
         this.numSS = numSS;
         this.address = address;
         this.age = age;
+        this.trackingCards = new HashMap<>();
     }
 
     @Override
@@ -49,20 +53,8 @@ public class Patient {
         return lastName;
     }
 
-    public Map<Speciality, TrackingCard> getTrackingCards() {
-        return trackingCards;
-    }
-
-    public void setTrackingCards(Map<Speciality, TrackingCard> trackingCards) {
-        this.trackingCards = trackingCards;
-    }
-
     public StayCard getStayCard() {
         return stayCard;
-    }
-
-    public void setStayCard(StayCard stayCard) {
-        this.stayCard = stayCard;
     }
 
     /**
@@ -93,7 +85,7 @@ public class Patient {
      * @param speciality
      */
     public void printTrackingCardOf(Speciality speciality) {
-        if (trackingCards == null || trackingCards.get(speciality).getReports() == null) {
+        if (this.trackingCards.isEmpty() || this.trackingCards.get(speciality).getReports().isEmpty()) {
             System.out.println(lastName + " n'a aucun compte rendu pour la spécialité " + speciality + ".");
         } else {
             Set<Report> reports = trackingCards.get(speciality).getReports();
@@ -112,14 +104,24 @@ public class Patient {
      * @return
      */
     public boolean isAtTheHospital() {
-        if (this.stayCard == null) {
-            //TODO Use Null Object Pattern to avoid that.
-            return false;
-        }
-        return true;
+        return this.stayCard != null;
     }
 
     public void stayCard(StayCard stayCard) {
         this.stayCard = stayCard;
+    }
+
+    /**
+     * TODO
+     * @param speciality
+     * @param report
+     */
+    public void addReportFor(Speciality speciality, Report report) throws IllegalReportException {
+        this.stayCard.addReportToSpeciality(speciality, report);
+        this.trackingCards.get(speciality).addReport(report);
+    }
+
+    public void needConsultationFor(Speciality speciality) {
+        this.trackingCards.putIfAbsent(speciality, TrackingCardFactory.current().newTrackingCard());
     }
 }

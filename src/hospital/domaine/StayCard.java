@@ -1,12 +1,12 @@
 package hospital.domaine;
 
+import hospital.exception.IllegalReportException;
+
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
 /**
- * Created by rousseaua on 23/10/15.
+ * todo
  */
 public class StayCard {
 
@@ -25,12 +25,16 @@ public class StayCard {
         }
     }
 
-    //todo doc
-    public void addReportToSpeciality(Speciality speciality, Report report) {
-        for (HashMap.Entry<Speciality, Report> entry : specialityReportMap.entrySet()) {
-            if (entry.getKey() == speciality) {
-                entry.setValue(report);
-            }
+    /**
+     * todo
+     *
+     * @param speciality
+     * @param report
+     */
+    public void addReportToSpeciality(Speciality speciality, Report report) throws IllegalReportException {
+        if (this.specialityReportMap.get(speciality) != null) {
+            throw new IllegalReportException();
         }
+        this.specialityReportMap.put(speciality, report);
     }
 }

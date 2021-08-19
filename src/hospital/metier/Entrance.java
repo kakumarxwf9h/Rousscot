@@ -39,24 +39,24 @@ public class Entrance extends ActionForPerson {
     *   @param patient the patient that needs the stay card.
      */
     public void createStayCardFor(Patient patient, BufferedReader br) throws IOException {
-        StayCard stayCard = StayCardFactory.current().newStayCardFor(patient);
-        addSpecialityTo(stayCard, br);
+        StayCardFactory.current().newStayCardFor(patient);
+        this.addSpecialityTo(patient, br);
     }
 
-    public void addSpecialityTo(StayCard stayCard, BufferedReader br) throws IOException {
+    public void addSpecialityTo(Patient patient, BufferedReader br) throws IOException {
         System.out.print("Sp�cialit� (taper 'aide' pour avoir la liste ou 'fini' pour terminer l'enregistrement) : ");
-        this.manageSpecialityNamed(br.readLine(), stayCard, br);
+        this.manageSpecialityNamed(br.readLine(), patient, br);
     }
 
     /*
     *   TODO
      */
-    public Object manageSpecialityNamed(String input, StayCard stayCard, BufferedReader br) throws IOException {
+    public Object manageSpecialityNamed(String input, Patient patient, BufferedReader br) throws IOException {
         //Can be better but that will do it for now.
         String inpt = input.toLowerCase().trim();
         if( inpt.equals("aide")){
             System.out.println(Speciality.allSpeciality());
-            this.addSpecialityTo(stayCard,br);
+            this.addSpecialityTo(patient,br);
             return null;
         }
 
@@ -66,13 +66,13 @@ public class Entrance extends ActionForPerson {
 
         Speciality speciality = Speciality.forInput(inpt);
         if(!(speciality == null)){
-            stayCard.addSpeciality(speciality);
-            this.addSpecialityTo(stayCard, br);
+            patient.needConsultationFor(speciality);
+            this.addSpecialityTo(patient, br);
             return null;
         }
 
         System.out.println("Cette sp�cialit� n'existe pas. Utilisez 'aide' pour plus d'information.");
-        this.addSpecialityTo(stayCard, br);
+        this.addSpecialityTo(patient, br);
         return null;
     }
 

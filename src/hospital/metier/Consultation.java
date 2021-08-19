@@ -3,6 +3,7 @@ package hospital.metier;
 import hospital.domaine.Patient;
 import hospital.domaine.Specialist;
 import hospital.domaine.Speciality;
+import hospital.exception.IllegalReportException;
 import hospital.factory.PatientFactory;
 import hospital.factory.ReportFactory;
 import hospital.factory.SpecialistFactory;
@@ -41,11 +42,10 @@ public class Consultation extends ActionForPerson {
             System.out.println("Aucun patient de ce nom.");
         } else if (patient.getStayCard() == null) {
             System.out.println("Le patient n'est pas à l'hopital");
-        } else if (!(patient.needSpeciality(speciality))) {
-            System.out.println("Le patient existe mais n'a pas besoin de cette spécialité.");
         } else {
             patient.printTrackingCardOf(speciality);
             this.createNewReport(patient, specialist, br);
+            System.out.println("Consultation finie. Compte rendu enregistré.\n");
         }
     }
 
@@ -54,8 +54,11 @@ public class Consultation extends ActionForPerson {
      */
     public void createNewReport(Patient patient, Specialist specialist, BufferedReader br) throws IOException {
         System.out.println("Rapport: ");
-        // todo gné ? j'ai un peu du mal à voir comment ça va s'imbriquer
-        ReportFactory.current().createReport(patient, specialist, br.readLine());
+        try {
+            ReportFactory.current().createReport(patient, specialist, br.readLine());
+        } catch (IllegalReportException e) {
+            System.out.println("Le patient existe n'a pas besoin de cette spécialité ou à déjà consulté..");
+        }
     }
 
     @Override

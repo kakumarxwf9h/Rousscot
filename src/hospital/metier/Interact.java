@@ -57,6 +57,7 @@ public class Interact extends Action {
                 //Do nothing. This is just help method for user.
             }
         }
+        System.out.println();
     }
 
     /*

@@ -3,6 +3,7 @@ package hospital.factory;
 import hospital.domaine.Patient;
 import hospital.domaine.Report;
 import hospital.domaine.Specialist;
+import hospital.exception.IllegalReportException;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -39,13 +40,9 @@ public class ReportFactory {
     }
 
 
-    public void createReport(Patient patient, Specialist specialist, String s) {
-        //TODO
-        Report report = createReport(new Date(), s);
-        for (Patient p : PatientFactory.current().patients) {
-            if(p.lastName()==patient.lastName()){
-                p.getStayCard().addReportToSpeciality(specialist.getSpeciality(), report);
-            }
-        }
+    public void createReport(Patient patient, Specialist specialist, String content) throws IllegalReportException {
+        Report report = createReport(new Date(), content);
+        patient.addReportFor(specialist.getSpeciality(), report);
+        this.reports.add(report);
     }
 }

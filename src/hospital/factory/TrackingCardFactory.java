@@ -20,4 +20,8 @@ public class TrackingCardFactory {
     private TrackingCardFactory() {
         this.trackingCards = new HashSet<TrackingCard>();
     }
+
+    public TrackingCard newTrackingCard() {
+        return new TrackingCard();
+    }
 }

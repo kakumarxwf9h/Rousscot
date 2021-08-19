@@ -1,23 +1,31 @@
 package hospital.domaine;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by rousseaua on 23/10/15.
+ *
  */
 public class TrackingCard {
 
     protected Set<Report> reports;
 
-    public TrackingCard(Set<Report> reports) {
-        this.reports = reports;
+    public TrackingCard() {
+        this.reports = new HashSet<>();
     }
 
     public Set<Report> getReports() {
         return reports;
     }
 
-    public void setReports(Set<Report> reports) {
-        this.reports = reports;
+    public void addReport(Report report) {
+        this.reports.add(report);
+    }
+
+    @Override
+    public String toString() {
+        return "aTrackingCard{" +
+                "reports=" + reports +
+                '}';
     }
 }
