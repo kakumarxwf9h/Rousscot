@@ -2,7 +2,6 @@ package hospital.metier;
 
 import hospital.domaine.Patient;
 import hospital.domaine.Specialist;
-import hospital.domaine.Speciality;
 import hospital.exception.IllegalReportException;
 import hospital.factory.PatientFactory;
 import hospital.factory.ReportFactory;
@@ -12,14 +11,20 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 /**
- * TODO
+ * I am a class that manage a consultation.
+ *
+ * @author Cyril Ferlicot & Aurélien Rousseau
  */
 public class Consultation extends ActionForPerson {
 
     protected final static String COMMAND = "consultation";
 
-    /*
-    * TODO
+    /**
+     * I manage a consultation.
+     *
+     * @param br   a BufferedReader if the action need to interact with the user.
+     * @param name The name of the person
+     * @throws IOException
      */
     @Override
     public void action(BufferedReader br, String name) throws IOException {
@@ -31,26 +36,34 @@ public class Consultation extends ActionForPerson {
         }
     }
 
-    /*
-    * TODO
+    /**
+     * TODO
+     *
+     * @param specialist
+     * @param br
+     * @throws IOException
      */
     public void consultWith(Specialist specialist, BufferedReader br) throws IOException {
         System.out.println("Nom du patient: ");
         Patient patient = PatientFactory.current().patientNamed(br.readLine());
-        Speciality speciality = specialist.getSpeciality();
         if (patient == null) {
             System.out.println("Aucun patient de ce nom.");
         } else if (patient.getStayCard() == null) {
             System.out.println("Le patient n'est pas à l'hopital");
         } else {
-            patient.printTrackingCardOf(speciality);
+            patient.printTrackingCardOf(specialist.getSpeciality());
             this.createNewReport(patient, specialist, br);
             System.out.println("Consultation finie. Compte rendu enregistré.\n");
         }
     }
 
-    /*
-    * TODO
+    /**
+     * I create a new report for a patient and a specialist.
+     *
+     * @param patient    the patient.
+     * @param specialist the specialist that write the report.
+     * @param br         a BufferedReader.
+     * @throws IOException
      */
     public void createNewReport(Patient patient, Specialist specialist, BufferedReader br) throws IOException {
         System.out.println("Rapport: ");

@@ -7,18 +7,16 @@ import java.util.Map;
 /**
  * I begin an interaction with the user. When an action end, I am call to launch a new action.
  *
- * @author Cyril Ferlicot & Aurï¿½lien Rousseau
+ * @author Cyril Ferlicot & Aurélien Rousseau
  */
 public class Interact extends Action {
 
-    //List of commands available to the user.
-    // I map the name of the command and the name of the class that map this command.
-    protected Map<String, String> commands;
-
-    /*
-    *   I am the action of this class.
-    *   I display to the user the commands he can use then I launch the action he selected.
-    *   @param br aBufferedReader to read the command of the user.
+    /**
+     * I am the action of this class.
+     * I display to the user the commands he can use then I launch the action he selected.
+     *
+     * @param br a BufferedReader if the action need to interact with the user.
+     * @throws IOException
      */
     @Override
     public void action(BufferedReader br) throws IOException {
@@ -35,17 +33,9 @@ public class Interact extends Action {
         }
     }
 
-    /*
-    *   I I take the name of a command and I return a new instance of the corresponding class.
-    *   @param command the command corresponding of the class
-    *   @return An instance of an action class.
-     */
-    public Action getInstanceOfClassNamed(String command) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-        return (Action) Class.forName(this.commands.get(command.toLowerCase())).newInstance();
-    }
 
-    /*
-    *   I generate an help to the user.
+    /**
+     * I generate an help to the user.
      */
     public void generateCommandHelp() {
         for (String command : this.commands.keySet()) {
@@ -60,15 +50,30 @@ public class Interact extends Action {
         System.out.println();
     }
 
-    /*
-    *   I generate the basic commands of the application.
-    *   I take an existing Map to let someone extend this application.
-    *   If someone need more command he can initialize the Map with the new commands then I will add the basic commands of the application.
-     *   A switch case would not have allow that :(
-     *   @param map I take a map with a command as key and a class name as value.
+
+    /**
+     * I take the name of a command and I return a new instance of the corresponding class from the commands map.
+     *
+     * @param command the command corresponding of the class
+     * @return An instance of an action class.
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     * @throws ClassNotFoundException
+     */
+    public Action getInstanceOfClassNamed(String command) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+        return (Action) Class.forName(this.commands.get(command.toLowerCase())).newInstance();
+    }
+
+    /**
+     * I generate the basic commands of the application.
+     * I take an existing Map to let someone extend this application.
+     * If someone need more command he can initialize the Map with the new commands then I will add the basic commands of the application.
+     * A switch case would not have allow that :(
+     *
+     * @param map I take a map with a command as key and a class name as value.
      */
     public void setCommandWith(Map<String, String> map) {
-        map.put(PatientAction.COMMAND.toLowerCase(),"hospital.metier.PatientAction" );
+        map.put(PatientAction.COMMAND.toLowerCase(), "hospital.metier.PatientAction");
         map.put(SpecialistAction.COMMAND.toLowerCase(), "hospital.metier.SpecialistAction");
         map.put(ListPatient.COMMAND.toLowerCase(), "hospital.metier.ListPatient");
         map.put(ListSpecialist.COMMAND.toLowerCase(), "hospital.metier.ListSpecialist");

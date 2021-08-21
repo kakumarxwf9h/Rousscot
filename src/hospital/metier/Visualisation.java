@@ -7,22 +7,21 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 /**
- * TODO
+ * I am a class that manage the visualisation of a patient visit to the hospital.
+ *
+ * @author Cyril Ferlicot & Aurélien Rousseau
  */
 public class Visualisation extends ActionForPerson {
 
     protected final static String COMMAND = "visualisation";
 
-    /*
-    * TODO
-     */
     @Override
     public void action(BufferedReader br, String name) throws IOException {
         Patient patient = PatientFactory.current().patientNamed(name);
         if (patient == null) {
             System.out.println("Aucun patient de ce nom.");
         } else {
-           patient.printStayingCard();
+            patient.printStayingCard();
         }
     }
 

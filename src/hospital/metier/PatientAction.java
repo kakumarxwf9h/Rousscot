@@ -6,13 +6,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * TODO
+ * I am a class that manage patient actions.
+ *
+ * @author Cyril Ferlicot & Aurélien Rousseau
  */
 public class PatientAction extends Action {
 
     protected static final String COMMAND = "actionPatient";
-
-    protected Map<String, String> commands;
 
     public PatientAction() {
         this.commands = new HashMap<>();
@@ -22,8 +22,11 @@ public class PatientAction extends Action {
         this.commands.put(PatientExit.COMMAND, "hospital.metier.PatientExit");
     }
 
-    /*
-    * TODO
+    /**
+     * I ask to the user a patient name.
+     *
+     * @param br a BufferedReader if the action need to interact with the user.
+     * @throws IOException
      */
     @Override
     public void action(BufferedReader br) throws IOException {
@@ -56,14 +59,6 @@ public class PatientAction extends Action {
 
     public ActionForPerson getInstanceOfClassNamed(String command) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
         return (ActionForPerson) Class.forName(this.commands.get(command)).newInstance();
-    }
-
-    public Map<String, String> getCommands() {
-        return commands;
-    }
-
-    public void setCommands(Map<String, String> commands) {
-        this.commands = commands;
     }
 
     @Override

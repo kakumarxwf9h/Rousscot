@@ -3,16 +3,16 @@ package hospital.metier;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
- * TODO
+ * I am a class to manage a Specialist actions.
+ *
+ * @author Cyril Ferlicot & Aurélien Rousseau
  */
 public class SpecialistAction extends Action {
 
     protected static final String COMMAND = "actionSpecialiste";
 
-    protected Map<String, String> commands;
 
     public SpecialistAction() {
         this.commands = new HashMap<>();
@@ -20,9 +20,6 @@ public class SpecialistAction extends Action {
         this.commands.put(Consultation.COMMAND, "hospital.metier.Consultation");
     }
 
-    /*
-    * TODO
-     */
     @Override
     public void action(BufferedReader br) throws IOException {
         System.out.println("Nom du Spécialiste: ");
@@ -54,14 +51,6 @@ public class SpecialistAction extends Action {
 
     public ActionForPerson getInstanceOfClassNamed(String command) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
         return (ActionForPerson) Class.forName(this.commands.get(command)).newInstance();
-    }
-
-    public Map<String, String> getCommands() {
-        return commands;
-    }
-
-    public void setCommands(Map<String, String> commands) {
-        this.commands = commands;
     }
 
     @Override

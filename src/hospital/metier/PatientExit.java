@@ -7,14 +7,20 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 /**
- * TODO
+ * I am a class that manage a Patient exit.
+ *
+ * @author Cyril Ferlicot & Aurélien Rousseau
  */
 public class PatientExit extends ActionForPerson {
 
     protected final static String COMMAND = "sortie";
 
-    /*
-     * TODO
+    /**
+     * I manage a patient exit.
+     *
+     * @param br   a BufferedReader if the action need to interact with the user.
+     * @param name The name of the person
+     * @throws IOException
      */
     @Override
     public void action(BufferedReader br, String name) throws IOException {
