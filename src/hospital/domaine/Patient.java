@@ -5,6 +5,7 @@ import hospital.exception.IllegalReportException;
 import hospital.factory.TrackingCardFactory;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -64,10 +65,39 @@ public class Patient {
         stayCard = null;
     }
 
-    public void printStayingCard() {
-        //TODO I print the staying card of the patient and the tracking cards.
-        //TODO�If the patient don't have one I could maybe use a Null Object Pattern :)
-        //TODO�maybe use printTrackingCardOf
+    /**
+     * Print the stayCard (or not if null) and the reports made
+     */
+    public void visualizeCards() {
+        if(stayCard==null){
+            System.out.println("Le patient ne possède pas de carte de séjour.");
+        }
+        else{
+            Map<Speciality, Report> m = stayCard.specialityReportMap;
+            System.out.println("Carte de séjour du patient: "+consultationsVisited()+ " consultation(s) visitée(s).");
+            for(Speciality s : m.keySet()){
+                if(m.get(s)!=null){
+                    System.out.println("  -" + s);
+                    printTrackingCardOf(s);
+                }
+            }
+            for(Speciality s : m.keySet()){
+                if(m.get(s)==null){
+                    System.out.println("  -" + s + "Consultation à effectuer");
+                }
+            }
+        }
+    }
+
+    public int consultationsVisited(){
+        int cpt = 0;
+        Map<Speciality, Report> m = stayCard.specialityReportMap;
+        for (Speciality s : m.keySet()){
+            if(m.get(s)!=null){
+                cpt++;
+            }
+        }
+        return cpt;
     }
 
     /**

@@ -21,7 +21,7 @@ public class Visualisation extends ActionForPerson {
         if (patient == null) {
             System.out.println("Aucun patient de ce nom.");
         } else {
-            patient.printStayingCard();
+            patient.visualizeCards();
         }
     }
 
