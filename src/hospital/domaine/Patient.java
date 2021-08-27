@@ -69,35 +69,16 @@ public class Patient {
      * Print the stayCard (or not if null) and the reports made
      */
     public void visualizeCards() {
-        if(stayCard==null){
+        if (stayCard == null) {
             System.out.println("Le patient ne possède pas de carte de séjour.");
-        }
-        else{
-            Map<Speciality, Report> m = stayCard.specialityReportMap;
-            System.out.println("Carte de séjour du patient: "+consultationsVisited()+ " consultation(s) visitée(s).");
-            for(Speciality s : m.keySet()){
-                if(m.get(s)!=null){
-                    System.out.println("  -" + s);
-                    printTrackingCardOf(s);
-                }
-            }
-            for(Speciality s : m.keySet()){
-                if(m.get(s)==null){
-                    System.out.println("  -" + s + "Consultation à effectuer");
-                }
-            }
+        } else {
+            System.out.println("Carte de séjour du patient: " + consultationsVisited() + " consultation(s) visitée(s).");
+            this.stayCard.printConsultations();
         }
     }
 
-    public int consultationsVisited(){
-        int cpt = 0;
-        Map<Speciality, Report> m = stayCard.specialityReportMap;
-        for (Speciality s : m.keySet()){
-            if(m.get(s)!=null){
-                cpt++;
-            }
-        }
-        return cpt;
+    public int consultationsVisited() {
+        return this.stayCard.numberOfVisitDone();
     }
 
     /**
@@ -118,12 +99,7 @@ public class Patient {
             System.out.println(lastName + " n'a aucun compte rendu pour la spécialité " + speciality + ".");
         } else {
             Set<Report> reports = trackingCards.get(speciality).getReports();
-            for (Report r : reports) {
-                System.out.println("--------------------");
-                System.out.println("COMPTE RENDU DU " + r.getDate());
-                System.out.println("RAPPORT: " + r.getReport());
-                System.out.println("END OF THE REPORT");
-            }
+            reports.forEach(hospital.domaine.Report::printReport);
         }
     }
 
@@ -142,6 +118,7 @@ public class Patient {
 
     /**
      * TODO
+     *
      * @param speciality
      * @param report
      */
