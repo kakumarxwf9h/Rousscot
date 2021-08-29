@@ -68,6 +68,7 @@ public class Consultation extends ActionForPerson {
     public void createNewReport(Patient patient, Specialist specialist, BufferedReader br) throws IOException {
         System.out.println("Rapport: ");
         try {
+            patient.isAlreadyAReportFor(specialist.getSpeciality());
             ReportFactory.current().createReport(patient, specialist, br.readLine());
         } catch (IllegalReportException e) {
             System.out.println("Le patient existe n'a pas besoin de cette spécialité ou à déjà consulté..");
