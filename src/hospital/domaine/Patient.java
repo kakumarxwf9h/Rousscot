@@ -130,4 +130,16 @@ public class Patient {
     public void needConsultationFor(Speciality speciality) {
         this.trackingCards.putIfAbsent(speciality, TrackingCardFactory.current().newTrackingCard());
     }
+
+
+    /**
+     *
+     * @param speciality
+     * @throws IllegalReportException if there's already a report for the speciality
+     */
+    public void isAlreadyAReportFor(Speciality speciality) throws IllegalReportException{
+        if ((stayCard.specialityReportMap.get(speciality) != null) ? true : false){
+            throw new IllegalReportException();
+        }
+    }
 }

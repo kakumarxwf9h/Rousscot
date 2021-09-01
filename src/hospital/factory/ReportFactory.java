@@ -41,8 +41,8 @@ public class ReportFactory {
 
 
     public void createReport(Patient patient, Specialist specialist, String content) throws IllegalReportException {
-        Report report = createReport(new Date(), content);
-        patient.addReportFor(specialist.getSpeciality(), report);
-        this.reports.add(report);
+            Report report = createReport(new Date(), content);
+            patient.addReportFor(specialist.getSpeciality(), report);
+            this.reports.add(report);
     }
 }
