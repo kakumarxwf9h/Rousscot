@@ -42,13 +42,21 @@ public class StayCard {
     public void printConsultations() {
         for (Speciality s : this.specialityReportMap.keySet()) {
             Report report = this.specialityReportMap.get(s);
-            if ( report != null) {
+            if (report != null) {
                 System.out.println("  -" + s);
                 report.printReport();
             }
         }
         this.specialityReportMap.keySet().stream().filter(s -> this.specialityReportMap.get(s) == null).forEach(s -> {
-            System.out.println("  -" + s + "Consultation à effectuer");
+            System.out.println("  -" + s + " Consultation à effectuer");
         });
+    }
+
+    public void needConsultationFor(Speciality speciality) {
+        if (specialityReportMap.containsKey(speciality)) {
+            System.out.println("La carte de séjour contient déjà la spécialité.");
+        } else {
+            specialityReportMap.put(speciality, null);
+        }
     }
 }

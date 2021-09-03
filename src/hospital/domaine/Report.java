@@ -34,6 +34,6 @@ public class Report {
         System.out.println("--------------------");
         System.out.println("COMPTE RENDU DU " + this.getDate());
         System.out.println("RAPPORT: " + this.getReport());
-        System.out.println("END OF THE REPORT");
+        System.out.println("FIN DU COMPTE RENDU");
     }
 }

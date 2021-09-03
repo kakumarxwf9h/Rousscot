@@ -129,6 +129,7 @@ public class Patient {
 
     public void needConsultationFor(Speciality speciality) {
         this.trackingCards.putIfAbsent(speciality, TrackingCardFactory.current().newTrackingCard());
+        this.stayCard.needConsultationFor(speciality);
     }
 
 

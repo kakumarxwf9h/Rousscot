@@ -22,6 +22,7 @@ public class Visualisation extends ActionForPerson {
             System.out.println("Aucun patient de ce nom.");
         } else {
             patient.visualizeCards();
+            System.out.println();
         }
     }
 
