@@ -59,4 +59,13 @@ public class StayCard {
             specialityReportMap.put(speciality, null);
         }
     }
+
+    public boolean stillNeedConsultation() {
+        for (Report report : this.specialityReportMap.values()) {
+            if (report == null) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -143,4 +143,8 @@ public class Patient {
             throw new IllegalReportException();
         }
     }
+
+    public boolean stillNeedConsultation() {
+        return this.stayCard.stillNeedConsultation();
+    }
 }
