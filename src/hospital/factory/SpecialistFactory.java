@@ -55,4 +55,13 @@ public class SpecialistFactory {
     public Collection<Specialist> specialists() {
         return this.specialists;
     }
+
+    public Specialist specialistFor(Speciality speciality) {
+        for(Specialist specialist : this.specialists){
+            if(specialist.getSpeciality().equals(speciality)){
+                return specialist;
+            }
+        }
+        return null;
+    }
 }

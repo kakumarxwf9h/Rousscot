@@ -33,9 +33,8 @@ public class ReportFactory {
      * @param content
      * @return the Report created
      */
-    public Report createReport(Date date, String content) {
+    private Report createReport(Date date, String content) {
         Report report = new Report(date, content);
-        reports.add(report);
         return report;
     }
 

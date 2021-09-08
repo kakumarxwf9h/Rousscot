@@ -48,7 +48,13 @@ public class Consultation extends ActionForPerson {
         Patient patient = PatientFactory.current().patientNamed(br.readLine());
         if (patient == null) {
             System.out.println("Aucun patient de ce nom.");
-        } else if (patient.getStayCard() == null) {
+        } else {
+           this.makeConsultation(patient, specialist, br);
+        }
+    }
+
+    public void makeConsultation(Patient patient, Specialist specialist, BufferedReader br) throws IOException {
+        if (patient.getStayCard() == null) {
             System.out.println("Le patient n'est pas à l'hopital");
         } else {
             patient.printTrackingCardOf(specialist.getSpeciality());
