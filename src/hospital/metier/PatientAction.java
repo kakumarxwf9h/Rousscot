@@ -19,6 +19,7 @@ public class PatientAction extends Action {
         this.commands.put(Entrance.COMMAND, "hospital.metier.Entrance");
         this.commands.put(RegisterPatient.COMMAND, "hospital.metier.RegisterPatient");
         this.commands.put(Visualisation.COMMAND, "hospital.metier.Visualisation");
+        this.commands.put(NextConsultation.COMMAND, "hospital.metier.NextConsultation");
         this.commands.put(PatientExit.COMMAND, "hospital.metier.PatientExit");
     }
 
