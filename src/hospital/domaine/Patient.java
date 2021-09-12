@@ -144,6 +144,10 @@ public class Patient {
         }
     }
 
+    public boolean stillNeedConsultation() {
+        return this.stayCard.stillNeedConsultation();
+    }
+
     public void printNextConsultation(){
         if(stayCard.specialityReportMap.size()==0){
             System.out.println("Le patient n'a aucune consultation.");

@@ -26,13 +26,25 @@ public class PatientExit extends ActionForPerson {
     public void action(BufferedReader br, String name) throws IOException {
         Patient patient = PatientFactory.current().patientNamed(name);
         if (patient == null) {
-            System.out.println("Aucun patient de ce nom.");
+            System.out.println("Aucun patient de ce nom.\n");
+        } else if (!patient.isAtTheHospital()) {
+            System.out.println("Le patient n'est pas à l'hôpital.\n");
         } else {
-            //TODO verifer qu'il y ai pas de consultation restante sinon warning.
+            this.patientExit(patient, br);
+        }
+    }
+
+    private void patientExit(Patient patient, BufferedReader br) throws IOException {
+        if (!patient.stillNeedConsultation() || this.forceExit(br)) {
             patient.destroyStayingCard();
             System.out.println("Carte de sï¿½jour de " + patient.lastName() + " dï¿½truite.\n");
         }
+    }
 
+    private boolean forceExit(BufferedReader br) throws IOException {
+        System.out.println("Ce patient à toujours besoin de consultation. Sortir de toute manière ? (O/N)");
+        String command = br.readLine().toLowerCase();
+        return command.equals("o") || command.equals("oui");
     }
 
     @Override
