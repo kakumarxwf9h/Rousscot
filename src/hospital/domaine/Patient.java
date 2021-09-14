@@ -147,4 +147,24 @@ public class Patient {
     public boolean stillNeedConsultation() {
         return this.stayCard.stillNeedConsultation();
     }
+
+    public void printNextConsultation(){
+        if(stayCard.specialityReportMap.size()==0){
+            System.out.println("Le patient n'a aucune consultation.");
+        }
+        else{
+            boolean noConsultationToVisit = true;
+            for(Speciality s: stayCard.specialityReportMap.keySet()){
+                if(stayCard.specialityReportMap.get(s)==null){
+                    System.out.println("Prochaine consultation: "+s);
+                    noConsultationToVisit = false;
+                    break;
+                }
+            }
+            if(noConsultationToVisit){
+                System.out.println("Le patient a terminé ses consultations.");
+            }
+        }
+    }
+
 }
