@@ -36,7 +36,7 @@ public class ListSpecialist extends Action {
     }
 
     @Override
-    public void description() {
-        System.out.println("Permet d'afficher la liste des spécialistes et leur spécialité.");
+    public String description() {
+        return "Permet d'afficher la liste des spécialistes et leur spécialité.";
     }
 }

@@ -13,7 +13,8 @@ public class Quit extends Action {
     protected static final String COMMAND = "quitter";
 
     /**
-     *   I quit the application
+     * I quit the application
+     *
      * @param br a BufferedReader useless here.
      * @throws IOException
      */
@@ -25,8 +26,8 @@ public class Quit extends Action {
     }
 
     @Override
-    public void description() {
-        System.out.println("    Use me to quit the application.");
+    public String description() {
+        return "Use me to quit the application.";
     }
 
 }

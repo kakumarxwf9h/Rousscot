@@ -49,7 +49,7 @@ public class Consultation extends ActionForPerson {
         if (patient == null) {
             System.out.println("Aucun patient de ce nom.");
         } else {
-           this.makeConsultation(patient, specialist, br);
+            this.makeConsultation(patient, specialist, br);
         }
     }
 
@@ -82,7 +82,7 @@ public class Consultation extends ActionForPerson {
     }
 
     @Override
-    public void description() {
-        System.out.println("Permet d'effectuer une consultation.");
+    public String description() {
+        return "Permet d'effectuer une consultation.";
     }
 }

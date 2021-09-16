@@ -26,8 +26,9 @@ public abstract class Action {
     public abstract void action(BufferedReader br) throws IOException;
 
     /**
-     * I need to print on the console the description of the action.
+     * I return a description for an action.
+     * @return a description of the action.
      */
-    public abstract void description();
+    public abstract String description();
 
 }

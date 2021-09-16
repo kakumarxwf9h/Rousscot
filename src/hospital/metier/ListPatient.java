@@ -41,7 +41,7 @@ public class ListPatient extends Action {
     }
 
     @Override
-    public void description() {
-        System.out.println("Permet d'afficher la liste des patient et de savoir s'ils sont y l'hôpital en ce moment.");
+    public String description() {
+        return "Permet d'afficher la liste des patient et de savoir s'ils sont y l'hôpital en ce moment.";
     }
 }

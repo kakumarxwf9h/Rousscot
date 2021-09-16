@@ -42,7 +42,7 @@ public class SpecialistAction extends Action {
             System.out.print(command + ": ");
             try {
                 ActionForPerson action = getInstanceOfClassNamed(command);
-                action.description();
+                System.out.println(action.description());
             } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
                 //Do nothing. This is just help method for user.
             }
@@ -54,7 +54,7 @@ public class SpecialistAction extends Action {
     }
 
     @Override
-    public void description() {
-        System.out.println("Permet d'effectuer une action avec un spécialiste (enregistrement, consultation, ...)");
+    public String description() {
+        return "Permet d'effectuer une action avec un spécialiste (enregistrement, consultation, ...)";
     }
 }

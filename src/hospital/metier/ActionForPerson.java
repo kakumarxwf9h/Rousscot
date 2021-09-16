@@ -19,9 +19,11 @@ public abstract class ActionForPerson {
      */
     public abstract void action(BufferedReader br, String name) throws IOException;
 
+
     /**
-     * I need to print on the console the description of the action.
+     * I return a description for an action.
+     * @return a description of the action.
      */
-    public abstract void description();
+    public abstract String description();
 
 }

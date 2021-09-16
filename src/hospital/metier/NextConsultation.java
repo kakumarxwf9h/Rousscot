@@ -26,7 +26,7 @@ public class NextConsultation extends ActionForPerson {
     }
 
     @Override
-    public void description() {
-        System.out.println("Permet de connaître la prochaine consultation d'un patient.");
+    public String description() {
+        return "Permet de connaître la prochaine consultation d'un patient.";
     }
 }

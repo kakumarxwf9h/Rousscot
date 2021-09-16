@@ -27,7 +27,7 @@ public class Visualisation extends ActionForPerson {
     }
 
     @Override
-    public void description() {
-        System.out.println("Permet de visualiser un séjour en cours.");
+    public String description() {
+        return "Permet de visualiser un séjour en cours.";
     }
 }

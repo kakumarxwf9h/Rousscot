@@ -54,7 +54,7 @@ public class PatientConsultation extends ActionForPerson {
     }
 
     @Override
-    public void description() {
-        System.out.println("Permet de consulter un spécialiste.");
+    public String description() {
+        return "Permet de consulter un spécialiste.";
     }
 }

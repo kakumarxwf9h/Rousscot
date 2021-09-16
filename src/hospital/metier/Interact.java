@@ -42,7 +42,7 @@ public class Interact extends Action {
             System.out.print(command + ": ");
             try {
                 Action action = getInstanceOfClassNamed(command);
-                action.description();
+                System.out.println(action.description());
             } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
                 //Do nothing. This is just help method for user.
             }
@@ -82,7 +82,8 @@ public class Interact extends Action {
     }
 
     @Override
-    public void description() {
+    public String description() {
         //do nothing for this class
+        return null;
     }
 }

@@ -48,7 +48,7 @@ public class RegisterSpecialist extends ActionForPerson {
     }
 
     @Override
-    public void description() {
-        System.out.println("Permet d'enregistrer un nouveau sp�cialiste.");
+    public String description() {
+        return "Permet d'enregistrer un nouveau sp�cialiste.";
     }
 }

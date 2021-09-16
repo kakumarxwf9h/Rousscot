@@ -48,7 +48,7 @@ public class PatientExit extends ActionForPerson {
     }
 
     @Override
-    public void description() {
-        System.out.println("Permet la sortie d'un patient.");
+    public String description() {
+        return "Permet la sortie d'un patient.";
     }
 }

@@ -102,7 +102,7 @@ public class Entrance extends ActionForPerson {
     }
 
     @Override
-    public void description() {
-        System.out.println("Permet d'enregistrer l'entr�e d'un patient.");
+    public String description() {
+        return "Permet d'enregistrer l'entr�e d'un patient.";
     }
 }

@@ -35,7 +35,7 @@ public class RegisterPatient extends ActionForPerson {
     }
 
     @Override
-    public void description() {
-        System.out.println("Permet d'enregistrer un nouveau patient.");
+    public String description() {
+        return "Permet d'enregistrer un nouveau patient.";
     }
 }
