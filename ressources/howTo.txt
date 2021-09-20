@@ -1,0 +1,61 @@
+INTRODUCTION
+"howTo.txt" est un document de référence qui liste des cas d'utilisation de l'application.
+
+
+CAS D'UTILISATION PRINCIPAUX
+NOTE: on suppose que les personnes impliquées dans les cas d'utilisation sont enregistrées ou non (en fonction de la descritpion)
+
+1) acteur : le médecin de garde, cas d’utilisation : entrée d’un patient
+1- saisie du nom du patient (si déjà entré arrêt) • si inconnu, possibilité de créer le patient (numéro Sécu, nom, adresse, age)
+2- création de sa fiche de séjour  • saisie des spécialités nécessitant une consultation
+
+// enregistrement le nouveau patient titi
+actionpatient -> titi -> enregistrer -> 012345689 > 30 rue Jules Guesde -> 50
+
+// entrée d'un nouveau patient toto
+actionpatient -> toto -> entree -> 0123456789 -> 30 rue Jules Guesde -> 50 -> cardiologie -> fini
+
+// entrée d'un patient connu titi
+actionpatient -> spirou -> entree -> cardiologie
+
+
+2) acteur : le médecin de garde, cas d’utilisation : visualisation du séjour en cours
+1- saisie du nom du patient (si inconnu ou pas entré erreur)
+2- affichage de sa fiche de séjour et des comptes-rendus déjà effectués lors du séjour
+
+// visualiser la carte de séjour du patient connu et entré toto
+actionpatient -> toto -> visualisation
+
+3) acteur : le spécialiste, cas d’utilisation : consultation
+1- saisie du nom de spécialiste (si inconnu arrêt)
+2- saisie du nom du patient (si inconnu, pas entré ou si spécialité absente de sa liste de séjour arrêt)
+3- affichage des comptes-rendus de la spécialité présents dans la fiche de suivi
+4- saisie d’un nouveau compte-rendu pour ce séjour
+
+// enregistrer un nouveau spécialiste DrWho
+actionspecialiste -> DrWho -> enregistrer -> cardiologie
+
+// consultation d'un patient titi par le DrWho et affichage de ses anciens comptes-rendus pour la spécialisté et création d'un nouveau rapport
+actionspecialiste -> DrWho -> consultation -> titi -> ceci est le nouveau rapport
+
+4) acteur : le médecin de garde, cas d’utilisation : sortie d’un patient
+1- saisie du nom du patient (si inconnu ou pas entré arrêt)
+2- destruction de sa fiche de séjour
+
+// sortie du patient entré titi
+actionpatient -> titi -> sortie
+
+
+AUTRES CAS D'UTILISATION
+Lister les patients de l'hopital:
+listepatient
+
+Lister les spécialistes de l'hopital:
+listespecialiste
+
+Quitter l'application:
+quitter
+
+Visualiser le séjour en cours:
+// pour le patient connu et entré titi
+actionpatient -> titi -> visualisation
