@@ -1,6 +1,7 @@
 package hospital.metier;
 
 import hospital.domaine.Patient;
+import hospital.exception.PatientNotFoundException;
 import hospital.factory.PatientFactory;
 
 import java.io.BufferedReader;
@@ -24,14 +25,19 @@ public class PatientExit extends ActionForPerson {
      */
     @Override
     public void action(BufferedReader br, String name) throws IOException {
-        Patient patient = PatientFactory.current().patientNamed(name);
-        if (patient == null) {
-            System.out.println("Aucun patient de ce nom.\n");
-        } else if (!patient.isAtTheHospital()) {
-            System.out.println("Le patient n'est pas à l'hôpital.\n");
-        } else {
-            this.patientExit(patient, br);
+        try {
+            Patient patient = PatientFactory.current().patientNamed(name);
+
+
+            if (!patient.isAtTheHospital()) {
+                System.out.println("Le patient n'est pas à l'hôpital.\n");
+            } else {
+                this.patientExit(patient, br);
+            }
+        } catch (PatientNotFoundException e) {
+            System.out.println("Aucun patient de ce nom: " + e.name() + ".\n");
         }
+
     }
 
     private void patientExit(Patient patient, BufferedReader br) throws IOException {

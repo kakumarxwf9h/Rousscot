@@ -1,6 +1,7 @@
 package hospital.metier;
 
 import hospital.domaine.Patient;
+import hospital.exception.PatientNotFoundException;
 import hospital.factory.PatientFactory;
 
 import java.io.BufferedReader;
@@ -17,12 +18,12 @@ public class Visualisation extends ActionForPerson {
 
     @Override
     public void action(BufferedReader br, String name) throws IOException {
-        Patient patient = PatientFactory.current().patientNamed(name);
-        if (patient == null) {
-            System.out.println("Aucun patient de ce nom.");
-        } else {
+        try {
+            Patient patient = PatientFactory.current().patientNamed(name);
             patient.visualizeCards();
             System.out.println();
+        } catch (PatientNotFoundException e) {
+            System.out.println("Aucun patient de ce nom: " + e.name() + ".\n");
         }
     }
 

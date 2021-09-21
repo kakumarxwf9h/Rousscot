@@ -1,7 +1,7 @@
 package hospital.factory;
 
 import hospital.domaine.Patient;
-import hospital.domaine.StayCard;
+import hospital.exception.PatientNotFoundException;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -25,15 +25,16 @@ public class PatientFactory {
     /**
      *
      * @param name
-     * @return the Patient with the given name, else null
+     * @return the Patient with the given name, else nul.
+     * @throws PatientNotFoundException if the patient is not found.
      */
-    public Patient patientNamed(String name) {
+    public Patient patientNamed(String name) throws PatientNotFoundException {
     	for(Patient p : patients){
     		if(p.lastName().equals(name)){
     			return p;
     		}
     	}
-        return null;
+        throw new PatientNotFoundException(name);
     }
 
     /**
@@ -47,16 +48,6 @@ public class PatientFactory {
         Patient patient =new Patient(name, ss, address, age);
         patients.add(patient);
         return patient;
-    }
-
-    /**
-     * //TODO v�rifier que �a fonctionne ha ha
-     *
-     * Destroy the stayCard of the given Patient
-     * @param patient
-     */
-    public void destroyStayingCard(Patient patient){
-        patientNamed(patient.lastName()).destroyStayingCard();
     }
 
     /**

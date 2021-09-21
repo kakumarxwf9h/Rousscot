@@ -3,6 +3,7 @@ package hospital.metier;
 import hospital.domaine.Patient;
 import hospital.domaine.Specialist;
 import hospital.domaine.Speciality;
+import hospital.exception.PatientNotFoundException;
 import hospital.factory.PatientFactory;
 import hospital.factory.SpecialistFactory;
 
@@ -20,10 +21,8 @@ public class PatientConsultation extends ActionForPerson {
 
     @Override
     public void action(BufferedReader br, String name) throws IOException {
-        Patient patient = PatientFactory.current().patientNamed(name);
-        if (patient == null) {
-            System.out.println("Aucun patient de ce nom.\n");
-        } else {
+        try {
+            Patient patient = PatientFactory.current().patientNamed(name);
             System.out.println("Spécialité ?");
             Speciality speciality = this.getSpeciality(br);
             Specialist specialist = SpecialistFactory.current().specialistFor(speciality);
@@ -32,6 +31,8 @@ public class PatientConsultation extends ActionForPerson {
             } else {
                 (new Consultation()).makeConsultation(patient, specialist, br);
             }
+        } catch (PatientNotFoundException e) {
+            System.out.println("Aucun patient de ce nom.\n");
         }
 
     }

@@ -2,6 +2,7 @@ package hospital.metier;
 
 import hospital.domaine.Patient;
 import hospital.domaine.Speciality;
+import hospital.exception.PatientNotFoundException;
 import hospital.factory.PatientFactory;
 import hospital.factory.StayCardFactory;
 
@@ -92,13 +93,14 @@ public class Entrance extends ActionForPerson {
      * @return an object Patient
      */
     public Patient getPatientNamed(String name, BufferedReader br) throws IOException {
-        Patient patient = PatientFactory.current().patientNamed(name);
-        if (patient == null) {
+        try {
+            Patient patient = PatientFactory.current().patientNamed(name);
+            return patient;
+        } catch (PatientNotFoundException e) {
             System.out.println("Premi�re visite, enregistrement du patient.");
-            (new RegisterPatient()).action(br, name);
-            return this.getPatientNamed(name, br);
+            (new RegisterPatient()).action(br, e.name());
+            return this.getPatientNamed(e.name(), br);
         }
-        return patient;
     }
 
     @Override

@@ -3,6 +3,7 @@ package hospital.metier;
 import hospital.domaine.Patient;
 import hospital.domaine.Specialist;
 import hospital.exception.IllegalReportException;
+import hospital.exception.PatientNotFoundException;
 import hospital.factory.PatientFactory;
 import hospital.factory.ReportFactory;
 import hospital.factory.SpecialistFactory;
@@ -28,11 +29,12 @@ public class Consultation extends ActionForPerson {
      */
     @Override
     public void action(BufferedReader br, String name) throws IOException {
-        Specialist specialist = SpecialistFactory.current().specialistNamed(name);
-        if (specialist == null) {
-            System.out.println("Aucun spécialiste de ce nom.");
-        } else {
+        try {
+            Specialist specialist = SpecialistFactory.current().specialistNamed(name);
             this.consultWith(specialist, br);
+        } catch (SpecialistNotFounedException e) {
+
+            System.out.println("Aucun spécialiste de ce nom : " + e.name() + ".\n");
         }
     }
 
@@ -45,11 +47,12 @@ public class Consultation extends ActionForPerson {
      */
     public void consultWith(Specialist specialist, BufferedReader br) throws IOException {
         System.out.println("Nom du patient: ");
-        Patient patient = PatientFactory.current().patientNamed(br.readLine());
-        if (patient == null) {
-            System.out.println("Aucun patient de ce nom.");
-        } else {
+        try {
+            Patient patient = PatientFactory.current().patientNamed(br.readLine());
             this.makeConsultation(patient, specialist, br);
+        } catch (PatientNotFoundException e) {
+
+            System.out.println("Aucun patient de ce nom : " + e.name() + ".\n");
         }
     }
 
