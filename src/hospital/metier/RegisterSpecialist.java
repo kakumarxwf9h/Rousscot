@@ -25,9 +25,14 @@ public class RegisterSpecialist extends ActionForPerson {
      */
     @Override
     public void action(BufferedReader br, String name) throws IOException {
-        Speciality speciality = getSpeciality(br);
-        Specialist specialist = SpecialistFactory.current().createSpecialist(name, speciality);
-        System.out.println("Spécialiste " + specialist.getName() + " engagé.\n");
+        if(SpecialistFactory.current().specialistNamed(name)==null){
+            Speciality speciality = getSpeciality(br);
+            Specialist specialist = SpecialistFactory.current().createSpecialist(name, speciality);
+            System.out.println("Spécialiste " + specialist.getName() + " engagé.\n");
+        }
+        else {
+            System.out.println("Un spécialiste du même nom existe déjà, il ne peut y avoir d'homonyme.");
+        }
     }
 
     /**

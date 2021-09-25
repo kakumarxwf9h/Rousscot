@@ -28,7 +28,7 @@ public class SpecialistFactory {
      */
     public Specialist specialistNamed(String name) {
         for (Specialist s : specialists) {
-            if (s.getName().equals(name)) {
+            if (s.getName().toLowerCase().equals(name.toLowerCase())) {
                 return s;
             }
         }

@@ -29,7 +29,7 @@ public class PatientFactory {
      */
     public Patient patientNamed(String name) {
     	for(Patient p : patients){
-    		if(p.lastName().equals(name)){
+    		if(p.lastName().toLowerCase().equals(name.toLowerCase())){
     			return p;
     		}
     	}
