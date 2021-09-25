@@ -24,14 +24,18 @@ public class RegisterPatient extends ActionForPerson {
      */
     @Override
     public void action(BufferedReader br, String name) throws IOException {
-        System.out.println("Num�ro de S�curit� Social: ");
-        Long ss = Long.parseLong(br.readLine());
-        System.out.println("Adresse: ");
-        String address = br.readLine();
-        System.out.println("Age: ");
-        Integer age = Integer.parseInt(br.readLine());
-        Patient patient = PatientFactory.current().createPatient(name, ss, address, age);
-        System.out.println("Patient nommé " + patient.lastName() + " créé.\n");
+        if(PatientFactory.current().patientNamed(name)==null){
+            System.out.println("Num�ro de S�curit� Social: ");
+            Long ss = Long.parseLong(br.readLine());
+            System.out.println("Adresse: ");
+            String address = br.readLine();
+            System.out.println("Age: ");
+            Integer age = Integer.parseInt(br.readLine());
+            Patient patient = PatientFactory.current().createPatient(name, ss, address, age);
+            System.out.println("Patient nommé " + patient.lastName() + " créé.\n");
+        } else{
+            System.out.println("Il existe d�j� un patient de ce nom, il ne peut y avoir d'homonyme.");
+        }
     }
 
     @Override
