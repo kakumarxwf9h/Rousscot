@@ -25,7 +25,7 @@ public class RegisterSpecialist extends ActionForPerson {
      */
     @Override
     public void action(BufferedReader br, String name) throws IOException {
-        if(SpecialistFactory.current().specialistNamed(name)==null){
+        if(SpecialistFactory.current().canRegisterSpecialistNamed(name)){
             Speciality speciality = getSpeciality(br);
             Specialist specialist = SpecialistFactory.current().createSpecialist(name, speciality);
             System.out.println("Spécialiste " + specialist.getName() + " engagé.\n");

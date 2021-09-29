@@ -24,7 +24,7 @@ public class RegisterPatient extends ActionForPerson {
      */
     @Override
     public void action(BufferedReader br, String name) throws IOException {
-        if(PatientFactory.current().patientNamed(name)==null){
+        if (PatientFactory.current().canRegisterPatientNamed(name)) {
             System.out.println("Numï¿½ro de Sï¿½curitï¿½ Social: ");
             Long ss = Long.parseLong(br.readLine());
             System.out.println("Adresse: ");
@@ -33,7 +33,7 @@ public class RegisterPatient extends ActionForPerson {
             Integer age = Integer.parseInt(br.readLine());
             Patient patient = PatientFactory.current().createPatient(name, ss, address, age);
             System.out.println("Patient nommÃ© " + patient.lastName() + " crÃ©Ã©.\n");
-        } else{
+        } else {
             System.out.println("Il existe déjà un patient de ce nom, il ne peut y avoir d'homonyme.");
         }
     }

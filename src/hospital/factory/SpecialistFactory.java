@@ -2,6 +2,7 @@ package hospital.factory;
 
 import hospital.domaine.Specialist;
 import hospital.domaine.Speciality;
+import hospital.exception.SpecialistNotFoundException;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -25,14 +26,15 @@ public class SpecialistFactory {
     /**
      * @param name the name of the Specialist to return
      * @return the Specialist with the given name, else null
+     * @throws SpecialistNotFoundException if no specialist have this name.
      */
-    public Specialist specialistNamed(String name) {
+    public Specialist specialistNamed(String name) throws SpecialistNotFoundException {
         for (Specialist s : specialists) {
             if (s.getName().toLowerCase().equals(name.toLowerCase())) {
                 return s;
             }
         }
-        return null;
+        throw new SpecialistNotFoundException(name);
     }
 
     /**
@@ -57,11 +59,20 @@ public class SpecialistFactory {
     }
 
     public Specialist specialistFor(Speciality speciality) {
-        for(Specialist specialist : this.specialists){
-            if(specialist.getSpeciality().equals(speciality)){
+        for (Specialist specialist : this.specialists) {
+            if (specialist.getSpeciality().equals(speciality)) {
                 return specialist;
             }
         }
         return null;
+    }
+
+    public boolean canRegisterSpecialistNamed(String name) {
+        for (Specialist s : specialists) {
+            if (s.getName().toLowerCase().equals(name.toLowerCase())) {
+                return false;
+            }
+        }
+        return true;
     }
 }

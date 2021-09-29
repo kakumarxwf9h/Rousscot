@@ -4,6 +4,7 @@ import hospital.domaine.Patient;
 import hospital.domaine.Specialist;
 import hospital.exception.IllegalReportException;
 import hospital.exception.PatientNotFoundException;
+import hospital.exception.SpecialistNotFoundException;
 import hospital.factory.PatientFactory;
 import hospital.factory.ReportFactory;
 import hospital.factory.SpecialistFactory;
@@ -32,8 +33,7 @@ public class Consultation extends ActionForPerson {
         try {
             Specialist specialist = SpecialistFactory.current().specialistNamed(name);
             this.consultWith(specialist, br);
-        } catch (SpecialistNotFounedException e) {
-
+        } catch (SpecialistNotFoundException e) {
             System.out.println("Aucun spécialiste de ce nom : " + e.name() + ".\n");
         }
     }

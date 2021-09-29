@@ -57,4 +57,13 @@ public class PatientFactory {
     public Set<Patient> patients() {
         return this.patients;
     }
+
+    public boolean canRegisterPatientNamed(String name) {
+        for(Patient p : patients){
+            if(p.lastName().toLowerCase().equals(name.toLowerCase())){
+                return false;
+            }
+        }
+        return true;
+    }
 }
