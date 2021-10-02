@@ -4,6 +4,7 @@ import hospital.domaine.Patient;
 import hospital.domaine.Speciality;
 import hospital.exception.PatientAtHospitalException;
 import hospital.exception.PatientNotFoundException;
+import hospital.exception.SpecialityNotFoundException;
 import hospital.factory.PatientFactory;
 
 import java.io.BufferedReader;
@@ -63,15 +64,16 @@ public class Entrance extends ActionForPerson {
             return null;
         }
 
-        Speciality speciality = Speciality.forInput(inpt);
-        if (!(speciality == null)) {
+        try {
+            Speciality speciality = Speciality.forInput(inpt);
             patient.needConsultationFor(speciality);
             this.addSpecialityTo(patient, br);
-            return null;
+        } catch (SpecialityNotFoundException e) {
+            System.out.println("Cette sp�cialit� n'existe pas: " + e.speciality() + ". Utilisez 'aide' pour plus d'information.");
+            this.addSpecialityTo(patient, br);
         }
 
-        System.out.println("Cette sp�cialit� n'existe pas. Utilisez 'aide' pour plus d'information.");
-        this.addSpecialityTo(patient, br);
+
         return null;
     }
 

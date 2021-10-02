@@ -4,6 +4,7 @@ import hospital.domaine.Patient;
 import hospital.domaine.Specialist;
 import hospital.domaine.Speciality;
 import hospital.exception.PatientNotFoundException;
+import hospital.exception.SpecialityNotFoundException;
 import hospital.factory.PatientFactory;
 import hospital.factory.SpecialistFactory;
 
@@ -46,12 +47,13 @@ public class PatientConsultation extends ActionForPerson {
      */
     public Speciality getSpeciality(BufferedReader br) throws IOException {
         System.out.println(Speciality.allSpeciality() + '\n' + "Spécialité : ");
-        Speciality speciality = Speciality.forInput(br.readLine().toLowerCase());
-        while (speciality == null) {
-            System.out.println("Pas de spécialité de ce nom. ");
-            speciality = this.getSpeciality(br);
+        try {
+            Speciality speciality = Speciality.forInput(br.readLine().toLowerCase());
+            return speciality;
+        } catch (SpecialityNotFoundException e) {
+            System.out.println("Pas de spécialité de ce nom: " + e.speciality() + ". ");
+            return this.getSpeciality(br);
         }
-        return speciality;
     }
 
     @Override
