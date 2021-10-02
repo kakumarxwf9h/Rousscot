@@ -2,9 +2,9 @@ package hospital.metier;
 
 import hospital.domaine.Patient;
 import hospital.domaine.Speciality;
+import hospital.exception.PatientAtHospitalException;
 import hospital.exception.PatientNotFoundException;
 import hospital.factory.PatientFactory;
-import hospital.factory.StayCardFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,23 +28,13 @@ public class Entrance extends ActionForPerson {
     @Override
     public void action(BufferedReader br, String name) throws IOException {
         Patient patient = getPatientNamed(name, br);
-        if (patient.isAtTheHospital()) {
-            System.out.println("Patient déjà à l'hôpital.\n");
-        } else {
-            this.createStayCardFor(patient);
+        try {
+            patient.goToHospital();
             this.addSpecialityTo(patient, br);
             System.out.println("Enregistrement de " + patient.lastName() + " termin�.\n");
+        } catch (PatientAtHospitalException e) {
+            System.out.println("Patient déjà à l'hôpital.\n");
         }
-    }
-
-    /**
-     * I create a StayCard for a patient.
-     *
-     * @param patient the patient that needs the stay card.
-     * @throws IOException
-     */
-    public void createStayCardFor(Patient patient) throws IOException {
-        StayCardFactory.current().newStayCardFor(patient);
     }
 
     /**

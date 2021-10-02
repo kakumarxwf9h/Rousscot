@@ -2,6 +2,8 @@ package hospital.domaine;
 
 
 import hospital.exception.IllegalReportException;
+import hospital.exception.PatientAtHospitalException;
+import hospital.factory.StayCardFactory;
 import hospital.factory.TrackingCardFactory;
 
 import java.util.HashMap;
@@ -165,6 +167,18 @@ public class Patient {
                 System.out.println("Le patient a terminé ses consultations.");
             }
         }
+    }
+
+    /**
+     * Make the patient go to the hospital.
+     * @throws PatientAtHospitalException if the patient is already at the hospital.
+     */
+    public void goToHospital() throws PatientAtHospitalException {
+        if(this.stayCard != null){
+            throw new PatientAtHospitalException(this);
+        }
+        this.stayCard = StayCardFactory.current().newStayCard();
+
     }
 
 }
