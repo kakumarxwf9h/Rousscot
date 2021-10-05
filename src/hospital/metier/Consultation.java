@@ -57,12 +57,12 @@ public class Consultation extends ActionForPerson {
     }
 
     public void makeConsultation(Patient patient, Specialist specialist, BufferedReader br) throws IOException {
-        if (patient.getStayCard() == null) {
-            System.out.println("Le patient n'est pas à l'hopital");
-        } else {
+        if (patient.isAtTheHospital()) {
             patient.printTrackingCardOf(specialist.getSpeciality());
             this.createNewReport(patient, specialist, br);
             System.out.println("Consultation finie. Compte rendu enregistré.\n");
+        } else {
+            System.out.println("Le patient n'est pas à l'hopital");
         }
     }
 
