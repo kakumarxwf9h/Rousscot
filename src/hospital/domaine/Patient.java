@@ -132,18 +132,6 @@ public class Patient {
         this.stayCard.needConsultationFor(speciality);
     }
 
-
-    /**
-     *
-     * @param speciality
-     * @throws IllegalReportException if there's already a report for the speciality
-     */
-    public void isAlreadyAReportFor(Speciality speciality) throws IllegalReportException{
-        if ((stayCard.specialityReportMap.get(speciality) != null) ? true : false){
-            throw new IllegalReportException();
-        }
-    }
-
     public boolean stillNeedConsultation() {
         return this.stayCard.stillNeedConsultation();
     }
@@ -165,6 +153,24 @@ public class Patient {
                 System.out.println("Le patient a terminé ses consultations.");
             }
         }
+    }
+
+    /**
+     *
+     * @param speciality
+     * @return true is the speciality is already visited, else false
+     */
+    public boolean isSpecialityAlreadyVisited(Speciality speciality){
+        return (this.stayCard.specialityReportMap.get(speciality)!=null);
+    }
+
+    /**
+     *
+     * @param speciality
+     * @return true if the speciality is needed, else false
+     */
+    public boolean isSpecialityNeeded(Speciality speciality){
+        return (this.stayCard.specialityReportMap.containsKey(speciality));
     }
 
 }
