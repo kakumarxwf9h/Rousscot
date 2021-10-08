@@ -1,5 +1,7 @@
 package hospital.domaine;
 
+import hospital.exception.SpecialityNotFoundException;
+
 /**
  * Created by rousseaua on 23/10/15.
  */
@@ -17,16 +19,12 @@ public enum Speciality {
         return result.toString();
     }
 
-    /*
-    * TODO
-     */
     public static Speciality forInput(String input) {
-        //TODO something doesn't work
         for (Speciality speciality : Speciality.values()) {
             if (input.equals(speciality.toString().toLowerCase())) {
                 return speciality;
             }
         }
-        return null;
+        throw new SpecialityNotFoundException(input);
     }
 }

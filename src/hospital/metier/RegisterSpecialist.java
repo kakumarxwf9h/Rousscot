@@ -2,6 +2,7 @@ package hospital.metier;
 
 import hospital.domaine.Specialist;
 import hospital.domaine.Speciality;
+import hospital.exception.SpecialityNotFoundException;
 import hospital.factory.SpecialistFactory;
 
 import java.io.BufferedReader;
@@ -25,12 +26,11 @@ public class RegisterSpecialist extends ActionForPerson {
      */
     @Override
     public void action(BufferedReader br, String name) throws IOException {
-        if(SpecialistFactory.current().canRegisterSpecialistNamed(name)){
+        if (SpecialistFactory.current().canRegisterSpecialistNamed(name)) {
             Speciality speciality = getSpeciality(br);
             Specialist specialist = SpecialistFactory.current().createSpecialist(name, speciality);
             System.out.println("SpÈcialiste " + specialist.getName() + " engagÈ.\n");
-        }
-        else {
+        } else {
             System.out.println("Un spÈcialiste du mÍme nom existe dÈj‡, il ne peut y avoir d'homonyme.");
         }
     }
@@ -44,12 +44,15 @@ public class RegisterSpecialist extends ActionForPerson {
      */
     public Speciality getSpeciality(BufferedReader br) throws IOException {
         System.out.println(Speciality.allSpeciality() + '\n' + "Sp√©cialit√© : ");
-        Speciality speciality = Speciality.forInput(br.readLine().toLowerCase());
-        while (speciality == null) {
-            System.out.println("Pas de sp√©cialit√© de ce nom. ");
-            speciality = this.getSpeciality(br);
+        try {
+            Speciality speciality = Speciality.forInput(br.readLine().toLowerCase());
+            return speciality;
+        } catch (SpecialityNotFoundException e) {
+
+            System.out.println("Pas de sp√©cialit√© de ce nom: " + e.speciality() + ". ");
+            return this.getSpeciality(br);
         }
-        return speciality;
+
     }
 
     @Override
