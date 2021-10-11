@@ -27,7 +27,11 @@ public class PatientConsultation extends ActionForPerson {
             System.out.println("Spécialité ?");
             Speciality speciality = this.getSpeciality(br);
             Specialist specialist = SpecialistFactory.current().specialistFor(speciality);
-            if (specialist == null) {
+            if(!patient.isSpecialityNeeded(speciality)){
+                System.out.println("Le patient n'a pas besoin de cette spécialité.");
+            } else if(patient.isSpecialityAlreadyVisited(speciality)){
+                System.out.println("Le patient a déjà réalisé la visite.");
+            } else if (specialist == null) {
                 System.out.println("Désolé mais aucun spécialiste ne peut s'occuper de vous pour le moment.\n");
             } else {
                 (new Consultation()).makeConsultation(patient, specialist, br);
