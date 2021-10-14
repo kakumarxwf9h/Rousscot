@@ -73,7 +73,6 @@ public class Entrance extends ActionForPerson {
             this.addSpecialityTo(patient, br);
         }
 
-
         return null;
     }
 
