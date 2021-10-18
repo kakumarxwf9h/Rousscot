@@ -23,8 +23,8 @@ public class StayCard {
      * @param report
      */
     public void addReportToSpeciality(Speciality speciality, Report report) throws IllegalReportException {
-        if (this.specialityReportMap.get(speciality) != null) {
-            throw new IllegalReportException();
+        if (!this.specialityReportMap.containsKey(speciality) || this.specialityReportMap.get(speciality) != null) {
+            throw new IllegalReportException(this.specialityReportMap.containsKey(speciality));
         }
         this.specialityReportMap.put(speciality, report);
     }

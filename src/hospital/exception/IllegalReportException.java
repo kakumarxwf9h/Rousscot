@@ -1,15 +1,18 @@
 package hospital.exception;
 
 /**
- * TODO
+ * I am raise if there is a problem with a report. I know if it's because the patient can't consult or if he already consulted.
  */
-public class IllegalReportException extends Exception{
+public class IllegalReportException extends Exception {
 
-    public IllegalReportException() {}
+    protected final Boolean hasConsult;
 
-    public IllegalReportException(String message)
-    {
-        super(message);
+    public IllegalReportException(boolean alreadyConsult) {
+        this.hasConsult = alreadyConsult;
+    }
+
+    public Boolean alreadyConsulted() {
+        return this.hasConsult;
     }
 
 }

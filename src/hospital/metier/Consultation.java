@@ -59,10 +59,6 @@ public class Consultation extends ActionForPerson {
     public void makeConsultation(Patient patient, Specialist specialist, BufferedReader br) throws IOException {
         if (patient.isAtTheHospital()) {
             System.out.println("Le patient n'est pas à l'hopital");
-        } else if (!patient.isSpecialityNeeded(specialist.getSpeciality())) {
-            System.out.println("Le patient n'a pas besoin de cette spécialité.");
-        } else if (patient.isSpecialityAlreadyVisited(specialist.getSpeciality())) {
-            System.out.println("Le patient a déjà été visité pour cette spécialité.");
         } else {
             patient.printTrackingCardOf(specialist.getSpeciality());
             this.createNewReport(patient, specialist, br);
@@ -81,10 +77,15 @@ public class Consultation extends ActionForPerson {
     public void createNewReport(Patient patient, Specialist specialist, BufferedReader br) throws IOException {
         System.out.println("Rapport: ");
         try {
-//            patient.isAlreadyAReportFor(specialist.getSpeciality());
             ReportFactory.current().createReport(patient, specialist, br.readLine());
         } catch (IllegalReportException e) {
-            System.out.println("Le patient existe n'a pas besoin de cette spécialité ou à déjà consulté..");
+            if (e.alreadyConsulted()) {
+
+                System.out.println("Le patient existe mais à déjà consulté.\n");
+            } else {
+
+                System.out.println("Le patient existe mais n'a pas besoin de cette spécialité. \n");
+            }
         }
     }
 

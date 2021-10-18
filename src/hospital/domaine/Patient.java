@@ -114,10 +114,6 @@ public class Patient {
         return this.stayCard != null;
     }
 
-    public void stayCard(StayCard stayCard) {
-        this.stayCard = stayCard;
-    }
-
     /**
      * TODO
      *
