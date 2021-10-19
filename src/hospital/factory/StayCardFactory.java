@@ -22,9 +22,13 @@ public class StayCardFactory {
         this.stayCards = new HashSet<StayCard>();
     }
 
-    public StayCard newStayCard() {
-        StayCard stayCard = new StayCard();
+    public StayCard newStayCardFor(Patient patient) {
+        StayCard stayCard = new StayCard(patient);
         this.stayCards.add(stayCard);
         return stayCard;
+    }
+
+    public void destroy(StayCard stayCard) {
+        this.stayCards.remove(stayCard);
     }
 }

@@ -13,7 +13,14 @@ public class PatientNotAtHospitalException extends Exception {
         this.patient = patient;
     }
 
-    public String name(){
-       return patient.lastName();
+    public PatientNotAtHospitalException() {
+        this.patient = null;
+    }
+
+    public String name() {
+        if (patient == null) {
+            return "";
+        }
+        return patient.lastName();
     }
 }

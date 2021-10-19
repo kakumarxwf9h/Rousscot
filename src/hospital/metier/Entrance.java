@@ -3,6 +3,7 @@ package hospital.metier;
 import hospital.domaine.Patient;
 import hospital.domaine.Speciality;
 import hospital.exception.PatientAtHospitalException;
+import hospital.exception.PatientNotAtHospitalException;
 import hospital.exception.PatientNotFoundException;
 import hospital.exception.SpecialityNotFoundException;
 import hospital.factory.PatientFactory;
@@ -71,6 +72,8 @@ public class Entrance extends ActionForPerson {
         } catch (SpecialityNotFoundException e) {
             System.out.println("Cette sp�cialit� n'existe pas: " + e.speciality() + ". Utilisez 'aide' pour plus d'information.");
             this.addSpecialityTo(patient, br);
+        } catch (PatientNotAtHospitalException e) {
+            e.printStackTrace();
         }
 
         return null;
@@ -85,8 +88,7 @@ public class Entrance extends ActionForPerson {
      */
     public Patient getPatientNamed(String name, BufferedReader br) throws IOException {
         try {
-            Patient patient = PatientFactory.current().patientNamed(name);
-            return patient;
+           return PatientFactory.current().patientNamed(name);
         } catch (PatientNotFoundException e) {
             System.out.println("Premi�re visite, enregistrement du patient.");
             (new RegisterPatient()).action(br, e.name());

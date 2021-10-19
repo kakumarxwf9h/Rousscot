@@ -3,6 +3,7 @@ package hospital.metier;
 import hospital.domaine.Patient;
 import hospital.domaine.Specialist;
 import hospital.exception.IllegalReportException;
+import hospital.exception.PatientNotAtHospitalException;
 import hospital.exception.PatientNotFoundException;
 import hospital.exception.SpecialistNotFoundException;
 import hospital.factory.PatientFactory;
@@ -57,13 +58,9 @@ public class Consultation extends ActionForPerson {
     }
 
     public void makeConsultation(Patient patient, Specialist specialist, BufferedReader br) throws IOException {
-        if (patient.isAtTheHospital()) {
-            System.out.println("Le patient n'est pas à l'hopital");
-        } else {
-            patient.printTrackingCardOf(specialist.getSpeciality());
-            this.createNewReport(patient, specialist, br);
-            System.out.println("Consultation finie. Compte rendu enregistré.\n");
-        }
+        patient.printTrackingCardOf(specialist.getSpeciality());
+        this.createNewReport(patient, specialist, br);
+        System.out.println("Consultation finie. Compte rendu enregistré.\n");
     }
 
     /**
@@ -86,6 +83,8 @@ public class Consultation extends ActionForPerson {
 
                 System.out.println("Le patient existe mais n'a pas besoin de cette spécialité. \n");
             }
+        } catch (PatientNotAtHospitalException e) {
+            System.out.println("Le patient n'est pas à l'hopital. \n");
         }
     }
 

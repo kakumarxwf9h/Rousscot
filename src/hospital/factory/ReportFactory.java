@@ -4,6 +4,7 @@ import hospital.domaine.Patient;
 import hospital.domaine.Report;
 import hospital.domaine.Specialist;
 import hospital.exception.IllegalReportException;
+import hospital.exception.PatientNotAtHospitalException;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -39,7 +40,7 @@ public class ReportFactory {
     }
 
 
-    public void createReport(Patient patient, Specialist specialist, String content) throws IllegalReportException {
+    public void createReport(Patient patient, Specialist specialist, String content) throws IllegalReportException, PatientNotAtHospitalException {
             Report report = createReport(new Date(), content);
             patient.addReportFor(specialist.getSpeciality(), report);
             this.reports.add(report);

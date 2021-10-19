@@ -1,6 +1,7 @@
 package hospital.domaine;
 
 import hospital.exception.IllegalReportException;
+import hospital.exception.PatientNotAtHospitalException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,8 +13,11 @@ public class StayCard {
 
     Map<Speciality, Report> specialityReportMap;
 
-    public StayCard() {
+    protected Patient patient;
+
+    public StayCard(Patient patient) {
         specialityReportMap = new HashMap<Speciality, Report>();
+        this.patient = patient;
     }
 
     /**
@@ -22,7 +26,7 @@ public class StayCard {
      * @param speciality
      * @param report
      */
-    public void addReportToSpeciality(Speciality speciality, Report report) throws IllegalReportException {
+    public void addReportToSpeciality(Speciality speciality, Report report) throws IllegalReportException, PatientNotAtHospitalException {
         if (!this.specialityReportMap.containsKey(speciality) || this.specialityReportMap.get(speciality) != null) {
             throw new IllegalReportException(this.specialityReportMap.containsKey(speciality));
         }
@@ -40,6 +44,7 @@ public class StayCard {
     }
 
     public void printConsultations() {
+        System.out.println("Carte de sÃ©jour du patient: " + this.numberOfVisitDone() + " consultation(s) visitÃ©e(s).");
         for (Speciality s : this.specialityReportMap.keySet()) {
             Report report = this.specialityReportMap.get(s);
             if (report != null) {
@@ -52,7 +57,7 @@ public class StayCard {
         });
     }
 
-    public void needConsultationFor(Speciality speciality) {
+    public void needConsultationFor(Speciality speciality) throws PatientNotAtHospitalException {
         if (specialityReportMap.containsKey(speciality)) {
             System.out.println("La carte de séjour contient déjà la spécialité.");
         } else {
@@ -60,12 +65,16 @@ public class StayCard {
         }
     }
 
-    public boolean stillNeedConsultation() {
+    public boolean stillNeedConsultation() throws PatientNotAtHospitalException {
         for (Report report : this.specialityReportMap.values()) {
             if (report == null) {
                 return true;
             }
         }
         return false;
+    }
+
+    public boolean isAtHospital() {
+        return true;
     }
 }

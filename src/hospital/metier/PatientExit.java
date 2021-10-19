@@ -1,6 +1,7 @@
 package hospital.metier;
 
 import hospital.domaine.Patient;
+import hospital.exception.PatientNotAtHospitalException;
 import hospital.exception.PatientNotFoundException;
 import hospital.factory.PatientFactory;
 
@@ -27,13 +28,7 @@ public class PatientExit extends ActionForPerson {
     public void action(BufferedReader br, String name) throws IOException {
         try {
             Patient patient = PatientFactory.current().patientNamed(name);
-
-
-            if (!patient.isAtTheHospital()) {
-                System.out.println("Le patient n'est pas à l'hôpital.\n");
-            } else {
-                this.patientExit(patient, br);
-            }
+            this.patientExit(patient, br);
         } catch (PatientNotFoundException e) {
             System.out.println("Aucun patient de ce nom: " + e.name() + ".\n");
         }
@@ -41,9 +36,13 @@ public class PatientExit extends ActionForPerson {
     }
 
     private void patientExit(Patient patient, BufferedReader br) throws IOException {
-        if (!patient.stillNeedConsultation() || this.forceExit(br)) {
-            patient.destroyStayingCard();
-            System.out.println("Carte de sï¿½jour de " + patient.lastName() + " dï¿½truite.\n");
+        try {
+            if (!patient.stillNeedConsultation() || this.forceExit(br)) {
+                patient.destroyStayingCard();
+                System.out.println("Carte de sï¿½jour de " + patient.lastName() + " dï¿½truite.\n");
+            }
+        } catch (PatientNotAtHospitalException e) {
+            System.out.println("Le patient " + e.name() + " n'est pas à l'hôpital.\n");
         }
     }
 

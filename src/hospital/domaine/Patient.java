@@ -3,11 +3,11 @@ package hospital.domaine;
 
 import hospital.exception.IllegalReportException;
 import hospital.exception.PatientAtHospitalException;
+import hospital.exception.PatientNotAtHospitalException;
 import hospital.factory.StayCardFactory;
 import hospital.factory.TrackingCardFactory;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -29,6 +29,7 @@ public class Patient {
         this.address = address;
         this.age = age;
         this.trackingCards = new HashMap<>();
+        this.stayCard = new NullStayCard(this);
     }
 
     @Override
@@ -55,40 +56,20 @@ public class Patient {
         return lastName;
     }
 
-    public StayCard getStayCard() {
-        return stayCard;
-    }
-
     /**
      * Destroy the "stayingCard" of the Patient = set the "stayingCard"  to null
      */
     public void destroyStayingCard() {
+        StayCardFactory.current().destroy(this.stayCard);
         //TODO Export the reports of the StayCard into the TrackingCard
-        stayCard = null;
+        stayCard = new NullStayCard(this);
     }
 
     /**
      * Print the stayCard (or not if null) and the reports made
      */
     public void visualizeCards() {
-        if (stayCard == null) {
-            System.out.println("Le patient ne possède pas de carte de séjour.");
-        } else {
-            System.out.println("Carte de séjour du patient: " + consultationsVisited() + " consultation(s) visitée(s).");
-            this.stayCard.printConsultations();
-        }
-    }
-
-    public int consultationsVisited() {
-        return this.stayCard.numberOfVisitDone();
-    }
-
-    /**
-     * @param speciality the Speciality to find in the StayCard of the Patient
-     * @return true if the Speciality is needed, else false
-     */
-    public boolean needSpeciality(Speciality speciality) {
-        return stayCard.specialityReportMap.containsKey(speciality);
+        this.stayCard.printConsultations();
     }
 
     /**
@@ -111,7 +92,7 @@ public class Patient {
      * @return
      */
     public boolean isAtTheHospital() {
-        return this.stayCard != null;
+        return this.stayCard.isAtHospital();
     }
 
     /**
@@ -120,34 +101,39 @@ public class Patient {
      * @param speciality
      * @param report
      */
-    public void addReportFor(Speciality speciality, Report report) throws IllegalReportException {
+    public void addReportFor(Speciality speciality, Report report) throws IllegalReportException, PatientNotAtHospitalException {
         this.stayCard.addReportToSpeciality(speciality, report);
         this.trackingCards.get(speciality).addReport(report);
     }
 
-    public void needConsultationFor(Speciality speciality) {
+    public void needConsultationFor(Speciality speciality) throws PatientNotAtHospitalException {
         this.trackingCards.putIfAbsent(speciality, TrackingCardFactory.current().newTrackingCard());
         this.stayCard.needConsultationFor(speciality);
     }
 
-    public boolean stillNeedConsultation() {
+    /**
+     * return a boolean, true if the patient need a speciality, else false.
+     *
+     * @return true if the patient need a speciality, else false.
+     * @throws PatientNotAtHospitalException if the patient is not at the hospital.
+     */
+    public boolean stillNeedConsultation() throws PatientNotAtHospitalException {
         return this.stayCard.stillNeedConsultation();
     }
 
-    public void printNextConsultation(){
-        if(stayCard.specialityReportMap.size()==0){
+    public void printNextConsultation() {
+        if (stayCard.specialityReportMap.size() == 0) {
             System.out.println("Le patient n'a aucune consultation.");
-        }
-        else{
+        } else {
             boolean noConsultationToVisit = true;
-            for(Speciality s: stayCard.specialityReportMap.keySet()){
-                if(stayCard.specialityReportMap.get(s)==null){
-                    System.out.println("Prochaine consultation: "+s);
+            for (Speciality s : stayCard.specialityReportMap.keySet()) {
+                if (stayCard.specialityReportMap.get(s) == null) {
+                    System.out.println("Prochaine consultation: " + s);
                     noConsultationToVisit = false;
                     break;
                 }
             }
-            if(noConsultationToVisit){
+            if (noConsultationToVisit) {
                 System.out.println("Le patient a terminé ses consultations.");
             }
         }
@@ -155,31 +141,30 @@ public class Patient {
 
     /**
      * Make the patient go to the hospital.
+     *
      * @throws PatientAtHospitalException if the patient is already at the hospital.
      */
     public void goToHospital() throws PatientAtHospitalException {
-        if(this.stayCard != null){
+        if (this.stayCard != null) {
             throw new PatientAtHospitalException(this);
         }
-        this.stayCard = StayCardFactory.current().newStayCard();
+        this.stayCard = StayCardFactory.current().newStayCardFor(this);
 
     }
 
     /**
-     *
      * @param speciality
      * @return true is the speciality is already visited, else false
      */
-    public boolean isSpecialityAlreadyVisited(Speciality speciality){
-        return (this.stayCard.specialityReportMap.get(speciality)!=null);
+    public boolean isSpecialityAlreadyVisited(Speciality speciality) {
+        return (this.stayCard.specialityReportMap.get(speciality) != null);
     }
 
     /**
-     *
      * @param speciality
      * @return true if the speciality is needed, else false
      */
-    public boolean isSpecialityNeeded(Speciality speciality){
+    public boolean isSpecialityNeeded(Speciality speciality) {
         return (this.stayCard.specialityReportMap.containsKey(speciality));
     }
 
