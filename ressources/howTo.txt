@@ -59,3 +59,7 @@ quitter
 Visualiser le séjour en cours:
 // pour le patient connu et entré titi
 actionpatient -> titi -> visualisation
+
+Connaitre la prochaine spécialité du patient
+// pour le patient connu et entré titi
+actionpatient -> titi -> prochaineconsultation
