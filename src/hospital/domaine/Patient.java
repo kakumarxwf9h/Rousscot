@@ -145,7 +145,7 @@ public class Patient {
      * @throws PatientAtHospitalException if the patient is already at the hospital.
      */
     public void goToHospital() throws PatientAtHospitalException {
-        if (this.stayCard != null) {
+        if (isAtTheHospital()) {
             throw new PatientAtHospitalException(this);
         }
         this.stayCard = StayCardFactory.current().newStayCardFor(this);

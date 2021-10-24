@@ -57,6 +57,11 @@ public class StayCard {
         });
     }
 
+    /**
+     * Add a consultation for a specibality.
+     * @param speciality the speciality.
+     * @throws PatientNotAtHospitalException if the patient is not at the hospital.
+     */
     public void needConsultationFor(Speciality speciality) throws PatientNotAtHospitalException {
         if (specialityReportMap.containsKey(speciality)) {
             System.out.println("La carte de séjour contient déjà la spécialité.");
@@ -65,6 +70,11 @@ public class StayCard {
         }
     }
 
+    /**
+     * Return a boolean. True if the patient still need a consultation or not.
+     * @return Return a boolean. True if the patient still need a consultation or not.
+     * @throws PatientNotAtHospitalException if the patient is not at the hospital.
+     */
     public boolean stillNeedConsultation() throws PatientNotAtHospitalException {
         for (Report report : this.specialityReportMap.values()) {
             if (report == null) {
@@ -74,6 +84,10 @@ public class StayCard {
         return false;
     }
 
+    /**
+     * Return if the patient is at the hospital.
+     * @return Return if the patient is at the hospital.
+     */
     public boolean isAtHospital() {
         return true;
     }
