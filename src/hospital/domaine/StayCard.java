@@ -43,6 +43,26 @@ public class StayCard {
         return cpt;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        StayCard stayCard = (StayCard) o;
+
+        if (specialityReportMap != null ? !specialityReportMap.equals(stayCard.specialityReportMap) : stayCard.specialityReportMap != null)
+            return false;
+        return !(patient != null ? !patient.equals(stayCard.patient) : stayCard.patient != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = specialityReportMap != null ? specialityReportMap.hashCode() : 0;
+        result = 31 * result + (patient != null ? patient.hashCode() : 0);
+        return result;
+    }
+
     public void printConsultations() {
         System.out.println("Carte de séjour du patient: " + this.numberOfVisitDone() + " consultation(s) visitée(s).");
         for (Speciality s : this.specialityReportMap.keySet()) {

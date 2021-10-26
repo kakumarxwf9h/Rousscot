@@ -18,16 +18,27 @@ public class Report {
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
     public String getReport() {
         return report;
     }
 
-    public void setReport(String report) {
-        this.report = report;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Report report1 = (Report) o;
+
+        if (date != null ? !date.equals(report1.date) : report1.date != null) return false;
+        return !(report != null ? !report.equals(report1.report) : report1.report != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = date != null ? date.hashCode() : 0;
+        result = 31 * result + (report != null ? report.hashCode() : 0);
+        return result;
     }
 
     public void printReport() {

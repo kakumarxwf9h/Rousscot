@@ -46,19 +46,11 @@ Speciality
 --
 #name: String
 --
-</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>470</x><y>270</y><w>250</w><h>190</h></coordinates><panel_attributes>lt=&lt;-
-m1=0..1</panel_attributes><additional_attributes>30;30;230;170</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>540</x><y>490</y><w>180</w><h>50</h></coordinates><panel_attributes>lt=&lt;-
-m1=0..n</panel_attributes><additional_attributes>30;30;160;30</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>550</x><y>140</y><w>550</w><h>50</h></coordinates><panel_attributes>lt=&lt;-
-m1=0..n</panel_attributes><additional_attributes>530;30;30;30</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>1140</x><y>270</y><w>50</w><h>250</h></coordinates><panel_attributes>lt=&lt;-
-m1=1</panel_attributes><additional_attributes>30;30;30;230</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>430</x><y>600</y><w>50</w><h>110</h></coordinates><panel_attributes>lt=&lt;-
-m1=0..n</panel_attributes><additional_attributes>30;90;30;30</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>880</x><y>240</y><w>220</w><h>220</h></coordinates><panel_attributes>lt=&lt;-
-m1=0..n</panel_attributes><additional_attributes>200;30;30;200</additional_attributes></element><element><type>com.umlet.element.base.Note</type><coordinates><x>610</x><y>190</y><w>400</w><h>140</h></coordinates><panel_attributes>Un patient à une HashMap&lt;Speciality,TrackingCard&gt;. 
-
-Il y a une entrée par spécialité dont il a eu besoin dans sa vie.
- 
-Une StayCard à une liste de spécialité, 
-ce sont les spécialités de la visite actuelle.
- 
-S'il y a besoin d'avoir les rapports pour une spécialité elle 
-demande au patient pour avoir l'historique complet.
-bg=gray</panel_attributes><additional_attributes/></element></umlet_diagram>
+</panel_attributes><additional_attributes/></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>470</x><y>270</y><w>250</w><h>190</h></coordinates><panel_attributes>lt=-
+m1=0..1
+m2=1</panel_attributes><additional_attributes>30;30;230;170</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>540</x><y>490</y><w>180</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=0..n</panel_attributes><additional_attributes>30;30;160;30</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>550</x><y>140</y><w>550</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=0..n</panel_attributes><additional_attributes>530;30;30;30</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>1140</x><y>270</y><w>50</w><h>250</h></coordinates><panel_attributes>lt=-
+m1=1</panel_attributes><additional_attributes>30;30;30;230</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>430</x><y>600</y><w>50</w><h>110</h></coordinates><panel_attributes>lt=-
+m1=0..n</panel_attributes><additional_attributes>30;90;30;30</additional_attributes></element><element><type>com.umlet.element.base.Relation</type><coordinates><x>880</x><y>240</y><w>220</w><h>220</h></coordinates><panel_attributes>lt=-
+m1=0..n</panel_attributes><additional_attributes>200;30;30;200</additional_attributes></element></umlet_diagram>

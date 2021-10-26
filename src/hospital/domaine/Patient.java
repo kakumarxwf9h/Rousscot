@@ -35,11 +35,17 @@ public class Patient {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Patient)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         Patient patient = (Patient) o;
 
-        return !(lastName != null ? !lastName.equals(patient.lastName) : patient.lastName != null) && !(numSS != null ? !numSS.equals(patient.numSS) : patient.numSS != null) && !(address != null ? !address.equals(patient.address) : patient.address != null) && !(age != null ? !age.equals(patient.age) : patient.age != null);
+        if (lastName != null ? !lastName.equals(patient.lastName) : patient.lastName != null) return false;
+        if (numSS != null ? !numSS.equals(patient.numSS) : patient.numSS != null) return false;
+        if (address != null ? !address.equals(patient.address) : patient.address != null) return false;
+        if (age != null ? !age.equals(patient.age) : patient.age != null) return false;
+        if (trackingCards != null ? !trackingCards.equals(patient.trackingCards) : patient.trackingCards != null)
+            return false;
+        return !(stayCard != null ? !stayCard.equals(patient.stayCard) : patient.stayCard != null);
 
     }
 
@@ -49,6 +55,8 @@ public class Patient {
         result = 31 * result + (numSS != null ? numSS.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (age != null ? age.hashCode() : 0);
+        result = 31 * result + (trackingCards != null ? trackingCards.hashCode() : 0);
+        result = 31 * result + (stayCard != null ? stayCard.hashCode() : 0);
         return result;
     }
 
